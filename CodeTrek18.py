@@ -6,3 +6,4 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
 db = SQLAlchemy(app) 
 
 class User(db.Model):
+    id = db.Column(db.Integer, primary_key = True)
