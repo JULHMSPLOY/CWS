@@ -14,3 +14,4 @@ class User(db.Model):
         return '<User %r>' % self.username
 
 def create_tables():
+    db.create_all()
