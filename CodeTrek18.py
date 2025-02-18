@@ -18,3 +18,4 @@ def create_tables():
     db.create_all()
 
 @app.route ('/')
+def home():
