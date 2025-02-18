@@ -17,3 +17,4 @@ class User(db.Model):
 def create_tables():
     db.create_all()
 
+@app.route ('/')
