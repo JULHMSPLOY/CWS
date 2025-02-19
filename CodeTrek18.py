@@ -23,6 +23,7 @@ def signup():
     email = request.from['email']
 
     user_exists = User.query.filter_by(username=username).first() or User.query.filter_by(email=email).first()
+    if user_exists:
 
 @app.route ('/')
 def home():
