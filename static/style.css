@@ -1,0 +1,94 @@
+/* สไตล์สำหรับ header */
+header {
+    background-color: #f8f9fa;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+}
+
+header .logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #007bff;
+}
+
+header nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+header nav ul li {
+    margin-right: 20px;
+}
+
+header nav ul li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+}
+
+header .auth-buttons button {
+    margin-left: 10px;
+}
+
+/* สไตล์สำหรับปุ่ม Sign Up และ Log in */
+button.btn-primary {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+}
+
+button.btn-secondary {
+    background-color: #6c757d;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+}
+
+/* สไตล์สำหรับ input search */
+.search-bar {
+    margin-top: 20px;
+}
+
+.search-bar input {
+    width: 80%;
+    padding: 10px;
+}
+
+.search-bar button {
+    background-color: #17a2b8;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+}
+
+/* สไตล์สำหรับข้อความ */
+main h1 {
+    font-size: 36px;
+    color: #343a40;
+}
+
+main p {
+    font-size: 18px;
+    color: #6c757d;
+}
+
+main a {
+    display: inline-block;
+    margin-top: 20px;
+    color: #007bff;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+main a:hover {
+    text-decoration: underline;
+}
+
+
+
