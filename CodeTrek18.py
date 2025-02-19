@@ -25,6 +25,8 @@ def signup():
     user_exists = User.query.filter_by(username=username).first() or User.query.filter_by(email=email).first()
     if user_exists:
         return "Username or Email already exists!"
+    
+    new_user = User(username=username, email=email)
 
 @app.route ('/')
 def home():
