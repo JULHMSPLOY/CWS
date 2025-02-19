@@ -28,6 +28,13 @@ def signup():
         username = request.form['username']
         email = request.form['email']
         password = request.form['password']
+        confirm_password = request.form['confirm_password']
+
+        if password != confirm_password:
+            return "Passwords do not match."
+        
+        if len(password) < 10:  
+            return "Password must be at least 10 characters long."
 
         user_exists = User.query.filter_by(username=username).first() or User.query.filter_by(email=email).first()
         if user_exists:
@@ -48,6 +55,7 @@ def signup():
 def home():
     return render_template('index.html')
 
-
 if __name__ == '__main__':
+    with app.app_context():
+        db.create_all()
     app.run(debug=True)
