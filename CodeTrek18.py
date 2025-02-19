@@ -19,23 +19,27 @@ class User(db.Model):
     
 @app.route('/signup', methods = ['GET', 'POST'])
 def signup():
-    username = request.from['username']
-    email = request.from['email']
+    if request.method == 'POST':
+        username = request.form['username']
+        email = request.form['email']
 
-    user_exists = User.query.filter_by(username=username).first() or User.query.filter_by(email=email).first()
-    if user_exists:
-        return "Username or Email already exists!"
+        user_exists = User.query.filter_by(username=username).first() or User.query.filter_by(email=email).first()
+        if user_exists:
+            return "Username or Email already exists!"
     
-    new_user = User(username=username, email=email)
+        new_user = User(username=username, email=email)
 
-    db.session.add(new_user)
-    db.session.commit()
+        db.session.add(new_user)
+        db.session.commit()
+
+        return redirect(url_for('home'))
+
+    return render_template('signup.html')
+
 
 @app.route ('/')
 def home():
     return render_template('index.html')
 
 if __name__ == '__main__':
-    with app.app_context():
-        db.create_all()
     app.run(debug = True)
