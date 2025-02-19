@@ -22,6 +22,8 @@ def signup():
     username = request.from['username']
     email = request.from['email']
 
+    user_exists = User.query.filter_by(username=username).first() or User.query.filter_by(email=email).first()
+
 @app.route ('/')
 def home():
     return render_template('index.html')
