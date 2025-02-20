@@ -24,7 +24,8 @@ class User(db.Model):
 
     def __repr__(self):
         return f'<User {self.username}>'
-    
+
+class AuthController:
     @staticmethod
     def check_password(hashed_password, password):
         return check_password_hash(hashed_password, password)
