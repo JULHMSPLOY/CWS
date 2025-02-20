@@ -9,6 +9,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_bootstrap import Bootstrap
 from werkzeug.security import generate_password_hash
 from werkzeug.security import check_password_hash
+import subprocess
 
 app = Flask(__name__)  
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
@@ -64,7 +65,7 @@ def signup():
             flash(error, 'danger')
         else:
             flash('Account created successfully!', 'success')
-            return redirect(url_for('home'))
+            return redirect(url_for('login'))
 
     return render_template('signup.html')
 
