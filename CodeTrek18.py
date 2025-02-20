@@ -12,6 +12,7 @@ from werkzeug.security import check_password_hash
 
 app = Flask(__name__)  
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
+app.config['SECRET_KEY'] = 'your_secret_key'
 db = SQLAlchemy(app)
 
 Bootstrap(app)
@@ -27,14 +28,14 @@ class User(db.Model):
 
 class AuthController:
     @staticmethod
-    def resister(username, email, password, confirm_password):
+    def register(username, email, password, confirm_password):
         if password != confirm_password:
             return "Passwords do not match."
 
         if len(password) < 10:
             return "Password must be at least 10 characters long."
 
-        user_exists = User.query.filter_by(User.username == username) or (User.email == email).first()
+        user_exists = User.query.filter((User.username == username) or (User.email == email)).first()
         if user_exists:
             return "Username or Email already exists!"
 
@@ -52,7 +53,7 @@ class AuthController:
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
     if request.method == 'POST':
-        error = AuthController.resister(
+        error = AuthController.register(
             request.form['username'],
             request.form['email'],
             request.form['password'],
@@ -73,6 +74,15 @@ def login():
         username = request.form['username']
         password = request.form['password']
         user = User.query.filter_by(username = username).first()
+
+        if user and AuthController.check_password(user.password, password):
+            session['user_id'] = user.id
+            flash('Login successful!', 'success')
+            return redirect(url_for('home'))
+        else:
+            flash('Invalid username or password', 'danger')
+
+    return render_template('login.html')
 
 @app.route('/')
 def home():
