@@ -27,6 +27,9 @@ class User(db.Model):
 
 class AuthController:
     @staticmethod
+    def resister(username, email, password, confirm_password):
+
+    @staticmethod
     def check_password(hashed_password, password):
         return check_password_hash(hashed_password, password)
 
