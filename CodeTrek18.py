@@ -89,6 +89,12 @@ def login():
 def home():
     return render_template('index.html')
 
+@app.route('/python', methods = ['GET', 'POST'])
+def python_practice():
+    result = None
+    next_challenge = None
+    feedback = None
+
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()
