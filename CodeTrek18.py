@@ -6,6 +6,7 @@ from flask import url_for
 from flask_sqlalchemy import SQLAlchemy
 from flask_bootstrap import Bootstrap
 from werkzeug.security import generate_password_hash
+from werkzeug.security import check_password_hash
 
 app = Flask(__name__)  
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
@@ -20,7 +21,11 @@ class User(db.Model):
     password = db.Column(db.String(120), unique=True, nullable=False)
 
     def __repr__(self):
-        return '<User %r>' % self.username
+        return f'<User {self.username}>'
+    
+    @staticmethod
+    def check_password(hashed_password, password):
+        return check_password_hash(hashed_password, password)
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
