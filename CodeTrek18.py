@@ -67,6 +67,13 @@ def signup():
 
     return render_template('signup.html')
 
+@app.route('/login', methods = ['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+        user = User.query.filter_by(username = username).first()
+
 @app.route('/')
 def home():
     return render_template('index.html')
