@@ -34,6 +34,17 @@ class AuthController:
         if len(password) < 10:
             return "Password must be at least 10 characters long."
 
+        user_exists = User.query.filter_by(User.username == username) or (User.email == email).first()
+        if user_exists:
+            return "Username or Email already exists!"
+
+        hashed_password = generate_password_hash(password, method='sha256')
+        new_user = User(username=username, email=email, password=hashed_password)
+
+        db.session.add(new_user)
+        db.session.commit()
+        return None
+
     @staticmethod
     def check_password(hashed_password, password):
         return check_password_hash(hashed_password, password)
@@ -41,29 +52,18 @@ class AuthController:
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
     if request.method == 'POST':
-        username = request.form['username']
-        email = request.form['email']
-        password = request.form['password']
-        confirm_password = request.form['confirm_password']
-
-        if password != confirm_password:
-            return "Passwords do not match."
+        error = AuthController.resister(
+            request.form['username'],
+            request.form['email'],
+            request.form['password'],
+            request.form['confirm_password']
+        )
         
-        if len(password) < 10:  
-            return "Password must be at least 10 characters long."
-
-        user_exists = User.query.filter_by(username=username).first() or User.query.filter_by(email=email).first()
-        if user_exists:
-            return "Username or Email already exists!"
-
-        hashed_password = generate_password_hash(password, method='sha256')
-
-        new_user = User(username=username, email=email, password=hashed_password)
-
-        db.session.add(new_user)
-        db.session.commit()
-
-        return redirect(url_for('home'))
+        if error:
+            flash(error, 'danger')
+        else:
+            flash('Account created successfully!', 'success')
+            return redirect(url_for('home'))
 
     return render_template('signup.html')
 
