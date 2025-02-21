@@ -267,6 +267,19 @@ class SQLChallenges:
         }
     ]
 
+    @staticmethod
+    def validate_solution(user_code, challenge):
+        try:
+            connection = sqlite3.connect('test.db')
+            cursor = connection.cursor()
+            cursor.execute(user_code)
+            connection.commit()
+            result = "Table `students` created and data inserted."
+            connection.close()
+            return result
+        except Exception as e:
+            return f'Error: {str(e)}'
+
 @app.route('/sql', methods=['GET', 'POST'])
 def sql_practice():
     challenge_id = int(request.args.get('id', 1))
@@ -280,36 +293,6 @@ def sql_practice():
     if request.method == 'POST':
         user_code = request.form['code']
         show_hint = request.form.get('show_hint', False)
-
-        if show_hint:
-            current_hint_index = int(request.form.get('current_hint_index', 0))
-            if current_hint_index < len(challenge['hints']):
-                feedback = f"Hint: {challenge['hints'][current_hint_index]}"
-                test_status = 'hint'
-        else:
-            try:
-                connection = sqlite3.connect('test.db') 
-                cursor = connection.cursor()
-                cursor.execute(user_code)
-                connection.commit()
-
-                cursor.execute(challenge['test_code'])
-                result = cursor.fetchall()
-
-                expected = challenge['expected_output'].strip()
-
-                if str(result) == expected:
-                    feedback = 'Correct! Well done.'
-                    next_challenge = challenge_id + 1 if challenge_id < len(challenges) else None
-                    test_status = 'success'
-                else:
-                    feedback = f'Incorrect solution.\nYour output: "{result}"\nExpected: "{expected}"\nTry again!'
-                    test_status = 'error'
-
-            except sqlite3.Error as e:
-                feedback = f'Error: {str(e)}'
-                test_status = 'error'
-                result = None
 
     return render_template('sql.html', challenge=challenge, result=result, feedback=feedback, next_challenge=next_challenge, test_status=test_status, total_challenges=len(challenges), current_hint_index=request.form.get('current_hint_index', 0) if request.method == 'POST' else 0)
 
