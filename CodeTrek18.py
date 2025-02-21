@@ -11,6 +11,7 @@ from werkzeug.security import generate_password_hash
 from werkzeug.security import check_password_hash
 import subprocess
 import sqlite3
+import os
 
 app = Flask(__name__)  
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
