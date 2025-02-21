@@ -110,6 +110,13 @@ def python_practice():
     if request.method == 'POST':
         user_code = request.form['code']
 
+        try:
+            input_data = challenge['test_code']
+            process = subprocess.run(
+                ['python3', '-c', user_code],
+                input=input_data, text=True, capture_output=True, timeout=5
+            )
+
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()
