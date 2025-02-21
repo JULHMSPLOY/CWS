@@ -117,6 +117,9 @@ def python_practice():
                 input=input_data, text=True, capture_output=True, timeout=5
             )
 
+            result = process.stdout.strip()
+            expected = challenge['expected_output'].strip()
+
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()
