@@ -211,6 +211,7 @@ class MatlabChallenges:
 
 @app.route('/matlab', methods=['GET', 'POST'])
 def matlab_practice():
+    challenges = MatlabChallenges.get_challenges()
     challenge_id = int(request.args.get('id', 1))
     challenge = next((c for c in challenges if c['id'] == challenge_id), None)
 
@@ -221,7 +222,9 @@ def matlab_practice():
 
     if request.method == 'POST':
         user_code = request.form['code']
-        show_hint = request.form.get('show_hint', False)
+        feedback = MatlabChallenges.validate_solution(user_code, challenge)
+        if "Correct!" in feedback:
+            next_challenge = challenge_id + 1 if challenge_id < len(challenges) else None
 
     return render_template('matlab.html', challenge=challenge, result=result, feedback=feedback, next_challenge=next_challenge, test_status=test_status, total_challenges=len(challenges), current_hint_index=request.form.get('current_hint_index', 0) if request.method == 'POST' else 0)
 
