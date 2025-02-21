@@ -192,6 +192,22 @@ class MatlabChallenges:
                 'valid_solutions': ["n = input('Enter N: ');\nfib = zeros(1,n);\nfib(1) = 0;\nfib(2) = 1;\nfor i = 3:n\nfib(i) = fib(i-1) + fib(i-2);\nend\nfprintf('%d ', fib);"]
             }
         ]
+    
+    @staticmethod
+    def validate_solution(user_code, challenge):
+        try:
+            input_data = challenge['example_input']
+            process = subprocess.run(['matlab', '-batch', user_code], input=input_data, text=True, capture_output=True, timeout=5)
+            result = process.stdout.strip()
+            expected = challenge['expected_output'].strip()
+            if result == expected:
+                return 'Correct! Well done.'
+            else:
+                return f'Incorrect solution.\nYour output: "{result}"\nExpected: "{expected}"\nTry again!'
+        except subprocess.TimeoutExpired:
+            return 'Error: Code execution timed out. Your program might have an infinite loop.'
+        except Exception as e:
+            return f'Error: {str(e)}'
 
 @app.route('/matlab', methods=['GET', 'POST'])
 def matlab_practice():
@@ -206,37 +222,6 @@ def matlab_practice():
     if request.method == 'POST':
         user_code = request.form['code']
         show_hint = request.form.get('show_hint', False)
-
-        if show_hint:
-            current_hint_index = int(request.form.get('current_hint_index', 0))
-            if current_hint_index < len(challenge['hints']):
-                feedback = f"Hint: {challenge['hints'][current_hint_index]}"
-                test_status = 'hint'
-        else:
-            try:
-                input_data = challenge['example_input']
-                process = subprocess.run(
-                    ['matlab', '-batch', user_code],
-                    input=input_data, text=True, capture_output=True, timeout=5
-                )
-                result = process.stdout.strip()
-                expected = challenge['expected_output'].strip()
-
-                if result == expected:
-                    feedback = 'Correct! Well done.'
-                    next_challenge = challenge_id + 1 if challenge_id < len(challenges) else None
-                    test_status = 'success'
-                else:
-                    feedback = f'Incorrect solution.\nYour output: "{result}"\nExpected: "{expected}"\nTry again!'
-                    test_status = 'error'
-
-            except subprocess.TimeoutExpired:
-                feedback = 'Error: Code execution timed out. Your program might have an infinite loop.'
-                test_status = 'error'
-            except Exception as e:
-                feedback = f'Error: {str(e)}'
-                test_status = 'error'
-                result = None
 
     return render_template('matlab.html', challenge=challenge, result=result, feedback=feedback, next_challenge=next_challenge, test_status=test_status, total_challenges=len(challenges), current_hint_index=request.form.get('current_hint_index', 0) if request.method == 'POST' else 0)
 
