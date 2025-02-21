@@ -129,6 +129,22 @@ class PythonChallenges:
                 'valid_solutions': ["n = int(input('Enter N: '))\nnums = [str(i) for i in range(1,n+1) if i%3==0 or i%5==0]\nprint(f'Numbers divisible by 3 or 5 up to {n}: {', '.join(nums)}')"]
             }
         ]
+    
+    @staticmethod
+    def validate_solution(user_code, challenge):
+        try:
+            input_data = challenge['test_code'] + challenge['example_input']
+            process = subprocess.run(['python3', '-c', user_code], input=input_data, text=True, capture_output=True, timeout=5)
+            result = process.stdout.strip()
+            expected = challenge['expected_output'].strip()
+            if result == expected:
+                return 'Correct! Well done.'
+            else:
+                return f'Incorrect solution.\nYour output: "{result}"\nExpected: "{expected}"\nTry again!'
+        except subprocess.TimeoutExpired:
+            return 'Error: Code execution timed out. Your program might have an infinite loop.'
+        except Exception as e:
+            return f'Error: {str(e)}'
 
 @app.route('/python', methods=['GET', 'POST'])
 def python_practice():
@@ -139,44 +155,6 @@ def python_practice():
     feedback = None
     next_challenge = None
     test_status = None
-    
-    if request.method == 'POST':
-        user_code = request.form['code']
-        show_hint = request.form.get('show_hint', False)
-
-        if show_hint:
-            # Handle hint display
-            current_hint_index = int(request.form.get('current_hint_index', 0))
-            if current_hint_index < len(challenge['hints']):
-                feedback = f"Hint: {challenge['hints'][current_hint_index]}"
-                test_status = 'hint'
-        else:
-            try:
-                # Test the code with example input
-                input_data = challenge['test_code'] + challenge['example_input']
-                process = subprocess.run(
-                    ['python3', '-c', user_code],
-                    input=input_data, text=True, capture_output=True, timeout=5
-                )
-
-                result = process.stdout.strip()
-                expected = challenge['expected_output'].strip()
-
-                if result == expected:
-                    feedback = 'Correct! Well done.'
-                    next_challenge = challenge_id + 1 if challenge_id < len(challenges) else None
-                    test_status = 'success'
-                else:
-                    feedback = f'Incorrect solution.\nYour output: "{result}"\nExpected: "{expected}"\nTry again!'
-                    test_status = 'error'
-
-            except subprocess.TimeoutExpired:
-                feedback = 'Error: Code execution timed out. Your program might have an infinite loop.'
-                test_status = 'error'
-            except Exception as e:
-                feedback = f'Error: {str(e)}'
-                test_status = 'error'
-                result = None
 
     return render_template('python.html', challenge=challenge, result=result, feedback=feedback, next_challenge=next_challenge, test_status=test_status, total_challenges=len(challenges), current_hint_index=request.form.get('current_hint_index', 0) if request.method == 'POST' else 0)
 
