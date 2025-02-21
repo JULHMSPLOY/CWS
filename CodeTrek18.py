@@ -91,6 +91,9 @@ def login():
 def home():
     return render_template('index.html')
 
+class PythonChallenges:
+    @staticmethod
+
 @app.route('/python', methods=['GET', 'POST'])
 def python_practice():
     challenges = [
