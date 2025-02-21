@@ -300,7 +300,55 @@ def sql_practice():
     return render_template('sql.html', challenge=challenge, result=result, feedback=feedback, next_challenge=next_challenge, test_status=test_status, total_challenges=len(challenges), current_hint_index=request.form.get('current_hint_index', 0) if request.method == 'POST' else 0)
 
 class CChallenges:
-    
+    @staticmethod
+    def get_challenges():
+        return [
+            {
+                'id': 1,
+                'title': 'Rectangle Calculator',
+                'difficulty': 'Easy',
+                'task': 'A program that receives the width and length of a rectangle and then calculates the area and perimeter.',
+                'test_code': 'Enter width and length: ',
+                'example_input': '4 5',
+                'expected_output': 'Width = 4.0 Length = 5.0\nArea = 20.0, Perimeter = 18.0',
+                'hints': ['Remember to convert input strings to float', 'Area = width * length', 'Perimeter = 2 * (width + length)'],
+                'valid_solutions': [
+                    """#include <stdio.h>
+                    int main() {
+                        float wd, lg, A, P;
+                        printf("Enter width and length: ");
+                        scanf("%f %f", &wd, &lg);
+                        printf("Width = %.1f Length = %.1f\n", wd, lg);
+                        A = wd * lg;
+                        P = 2 * (wd + lg);
+                        printf("Area = %.1f, Perimeter = %.1f", A, P);
+                        return 0;
+                    }"""
+                ]
+            },
+            {
+                'id': 2,
+                'title': 'Temperature Converter',
+                'difficulty': 'Easy',
+                'task': 'Create a program that converts Celsius to Fahrenheit.',
+                'test_code': 'Enter temperature in Celsius: ',
+                'example_input': '25',
+                'expected_output': '25.0 Celsius is equal to 77.0 Fahrenheit',
+                'hints': ['Use the formula: °F = (°C × 9/5) + 32'],
+                'valid_solutions': [
+                    """#include <stdio.h>
+                    int main() {
+                        float celsius, fahrenheit;
+                        printf("Enter temperature in Celsius: ");
+                        scanf("%f", &celsius);
+                        fahrenheit = (celsius * 9/5) + 32;
+                        printf("%.1f Celsius is equal to %.1f Fahrenheit", celsius, fahrenheit);
+                        return 0;
+                    }"""
+                ]
+            }
+        ]
+
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()
