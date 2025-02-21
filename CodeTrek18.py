@@ -10,6 +10,8 @@ from flask_bootstrap import Bootstrap
 from werkzeug.security import generate_password_hash
 from werkzeug.security import check_password_hash
 import subprocess
+import sqlite3
+
 
 app = Flask(__name__)  
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
@@ -302,7 +304,17 @@ def sql_practice():
             if current_hint_index < len(challenge['hints']):
                 feedback = f"Hint: {challenge['hints'][current_hint_index]}"
                 test_status = 'hint'
+        else:
+            try:
+                connection = sqlite3.connect('test.db') 
+                cursor = connection.cursor()
+                cursor.execute(user_code)
+                connection.commit()
 
+                cursor.execute(challenge['test_code'])
+                result = cursor.fetchall()
+
+                expected = challenge['expected_output'].strip()
 
 if __name__ == '__main__':
     with app.app_context():
