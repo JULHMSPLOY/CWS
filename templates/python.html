@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Practice</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}">
+</head>
+<body class="python-page">
+    <div class="container mt-5">
+        <h1>{{ challenge.task }}</h1>
+        <form method="POST">
+            <textarea name="code" rows="10" class="form-control" placeholder="Write your code here...">{{ request.form['code'] if request.method == 'POST' else '' }}</textarea>
+            <button type="submit" class="btn btn-primary mt-3">Submit</button>
+        </form>
+
+        {% if result %}
+            <h4 class="mt-4">Result:</h4>
+            <pre>{{ result }}</pre>
+        {% endif %}
+        
+        {% if feedback %}
+            <div class="alert alert-info mt-3">{{ feedback }}</div>
+        {% endif %}
+
+        {% if next_challenge %}
+            <a href="{{ url_for('python_practice', id=next_challenge) }}" class="btn btn-success mt-3">Next Challenge</a>
+        {% endif %}
+    </div>
+</body>
+</html>
