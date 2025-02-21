@@ -229,6 +229,14 @@ def matlab_practice():
                 result = process.stdout.strip()
                 expected = challenge['expected_output'].strip()
 
+                if result == expected:
+                    feedback = 'Correct! Well done.'
+                    next_challenge = challenge_id + 1 if challenge_id < len(challenges) else None
+                    test_status = 'success'
+                else:
+                    feedback = f'Incorrect solution.\nYour output: "{result}"\nExpected: "{expected}"\nTry again!'
+                    test_status = 'error'
+                    
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()
