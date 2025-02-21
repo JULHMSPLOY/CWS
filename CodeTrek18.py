@@ -91,6 +91,8 @@ def login():
 def home():
     return render_template('index.html')
 
+@app.route('/choose_challenge', methods=['GET'])
+
 class PythonChallenges:
     @staticmethod
     def get_challenges():
