@@ -230,11 +230,9 @@ def matlab_practice():
 
 class SQLChallenges:
     @staticmethod
-    
-@app.route('/sql', methods=['GET', 'POST'])
-def sql_practice():
-    challenges = [
-        {
+    def get_challenges():
+        return [
+            {
             'id': 1,
             'title': 'Create Table and Insert Data',
             'difficulty': 'Easy',
@@ -269,6 +267,8 @@ def sql_practice():
         }
     ]
 
+@app.route('/sql', methods=['GET', 'POST'])
+def sql_practice():
     challenge_id = int(request.args.get('id', 1))
     challenge = next((c for c in challenges if c['id'] == challenge_id), None)
 
