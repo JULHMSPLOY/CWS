@@ -376,6 +376,9 @@ class CChallenges:
         except Exception as e:
             return f'Error: {str(e)}'
         
+@app.route('/c', methods=['GET', 'POST'])
+def c_practice():
+        
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()
