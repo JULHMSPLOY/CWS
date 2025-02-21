@@ -91,9 +91,15 @@ def home():
 
 @app.route('/python', methods = ['GET', 'POST'])
 def python_practice():
-    result = None
-    next_challenge = None
-    feedback = None
+    challenges = [
+        {
+            'id' : 1,
+            'task' : 'A program that receives the width and length of a rectangle and then calculates the area and perimeter (or circumference).',
+            'test_code' : 'Rectangle\nEnter width and length: ',
+            'expected_output' : 'Width =  4.0 Length =  5.0\nArea = 20.0, Perimeter = 18.0',
+            'valid_solutions' : ["print('Rectangle')\nwd,lg = input('Enter width and length: ').split()\nwd = float(wd); lg = float(lg)\nprint('Width = ', wd, 'Length = ', lg)\nA = wd*lg\nP = wd+wd+lg+lg\nprint(F'Area = {A}, Perimeter = {P}')"] 
+        }
+    ]
 
 if __name__ == '__main__':
     with app.app_context():
