@@ -348,6 +348,9 @@ class CChallenges:
                 ]
             }
         ]
+    
+    @staticmethod
+    def validate_solution(user_code, challenge):
 
 if __name__ == '__main__':
     with app.app_context():
