@@ -285,6 +285,9 @@ def sql_practice():
         }
     ]
 
+    challenge_id = int(request.args.get('id', 1))
+    challenge = next((c for c in challenges if c['id'] == challenge_id), None)
+
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()
