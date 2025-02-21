@@ -126,6 +126,10 @@ def python_practice():
             else:
                 feedback = 'Incorrect solution. Try again!'
                 next_challenge = None
+        except Exception as e:
+            feedback = f'Error: {str(e)}'
+            result = None
+            next_challenge = None
 
 if __name__ == '__main__':
     with app.app_context():
