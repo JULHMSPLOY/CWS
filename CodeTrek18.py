@@ -387,6 +387,10 @@ def c_practice():
     next_challenge = None
     test_status = None
 
+    if request.method == 'POST':
+        user_code = request.form['code']
+        feedback = CChallenges.validate_solution(user_code, challenge)
+        
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()
