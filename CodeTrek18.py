@@ -365,12 +365,17 @@ class CChallenges:
             result = run_process.stdout.strip()
 
             expected = challenge['expected_output'].strip()
-            
+
             if result == expected:
                 return 'Correct! Well done.'
             else:
                 return f'Incorrect solution.\nYour output: "{result}"\nExpected: "{expected}"\nTry again!'
 
+        except subprocess.TimeoutExpired:
+            return 'Error: Code execution timed out. Your program might have an infinite loop.'
+        except Exception as e:
+            return f'Error: {str(e)}'
+        
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()
