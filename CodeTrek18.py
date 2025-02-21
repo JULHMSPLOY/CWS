@@ -236,7 +236,15 @@ def matlab_practice():
                 else:
                     feedback = f'Incorrect solution.\nYour output: "{result}"\nExpected: "{expected}"\nTry again!'
                     test_status = 'error'
-                    
+
+            except subprocess.TimeoutExpired:
+                feedback = 'Error: Code execution timed out. Your program might have an infinite loop.'
+                test_status = 'error'
+            except Exception as e:
+                feedback = f'Error: {str(e)}'
+                test_status = 'error'
+                result = None
+
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()
