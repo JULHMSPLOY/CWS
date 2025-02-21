@@ -214,6 +214,12 @@ def matlab_practice():
         user_code = request.form['code']
         show_hint = request.form.get('show_hint', False)
 
+        if show_hint:
+            current_hint_index = int(request.form.get('current_hint_index', 0))
+            if current_hint_index < len(challenge['hints']):
+                feedback = f"Hint: {challenge['hints'][current_hint_index]}"
+                test_status = 'hint'
+
 
 if __name__ == '__main__':
     with app.app_context():
