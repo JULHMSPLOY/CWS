@@ -351,6 +351,10 @@ class CChallenges:
     
     @staticmethod
     def validate_solution(user_code, challenge):
+        try:
+            filename = 'user_code.c'
+            with open(filename, 'w') as file:
+                file.write(user_code)
 
 if __name__ == '__main__':
     with app.app_context():
