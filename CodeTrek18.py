@@ -293,6 +293,10 @@ def sql_practice():
     next_challenge = None
     test_status = None
 
+    if request.method == 'POST':
+        user_code = request.form['code']
+        show_hint = request.form.get('show_hint', False)
+
 
 if __name__ == '__main__':
     with app.app_context():
