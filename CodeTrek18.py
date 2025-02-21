@@ -92,6 +92,14 @@ def home():
     return render_template('index.html')
 
 @app.route('/choose_challenge', methods=['GET'])
+def choose_challenge():
+    challenges = {
+        'Python': '/python',
+        'MATLAB': '/matlab',
+        'SQL': '/sql',
+        'C': '/c'
+    }
+    return render_template('choose_challenge.html', challenges=challenges)
 
 class PythonChallenges:
     @staticmethod
