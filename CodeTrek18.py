@@ -148,6 +148,7 @@ class PythonChallenges:
 
 @app.route('/python', methods=['GET', 'POST'])
 def python_practice():
+    challenges = PythonChallenges.get_challenges()
     challenge_id = int(request.args.get('id', 1))
     challenge = next((c for c in challenges if c['id'] == challenge_id), None)
 
@@ -155,6 +156,12 @@ def python_practice():
     feedback = None
     next_challenge = None
     test_status = None
+
+    if request.method == 'POST':
+        user_code = request.form['code']
+        feedback = PythonChallenges.validate_solution(user_code, challenge)
+        if "Correct!" in feedback:
+            next_challenge = challenge_id + 1 if challenge_id < len(challenges) else None
 
     return render_template('python.html', challenge=challenge, result=result, feedback=feedback, next_challenge=next_challenge, test_status=test_status, total_challenges=len(challenges), current_hint_index=request.form.get('current_hint_index', 0) if request.method == 'POST' else 0)
 
