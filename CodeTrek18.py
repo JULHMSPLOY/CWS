@@ -120,6 +120,13 @@ def python_practice():
             result = process.stdout.strip()
             expected = challenge['expected_output'].strip()
 
+            if result == expected:
+                feedback = 'Correct! Well done.'
+                next_challenge = challenge_id + 1 if challenge_id < len(challenges) else None
+            else:
+                feedback = 'Incorrect solution. Try again!'
+                next_challenge = None
+
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()
