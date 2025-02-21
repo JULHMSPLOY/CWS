@@ -167,34 +167,34 @@ def python_practice():
 
 class MatlabChallenges:
     @staticmethod
-    
+    def get_challenges():
+        return [
+            {
+                'id': 1,
+                'title': 'Circle Area and Circumference',
+                'difficulty': 'Easy',
+                'task': 'Write a MATLAB script that calculates the area and circumference of a circle given its radius.',
+                'test_code': '5',
+                'example_input': '5',
+                'expected_output': 'Area = 78.54, Circumference = 31.42',
+                'hints': ['Use pi in MATLAB', 'Area = pi * r^2', 'Circumference = 2 * pi * r'],
+                'valid_solutions': ["r = input('Enter radius: ');\nA = pi * r^2;\nC = 2 * pi * r;\nfprintf('Area = %.2f, Circumference = %.2f\n', A, C);"]
+            },
+            {
+                'id': 2,
+                'title': 'Fibonacci Sequence',
+                'difficulty': 'Medium',
+                'task': 'Write a MATLAB script that generates the first N numbers of the Fibonacci sequence.',
+                'test_code': '6',
+                'example_input': '6',
+                'expected_output': '0 1 1 2 3 5',
+                'hints': ['Use a loop', 'Fibonacci(n) = Fibonacci(n-1) + Fibonacci(n-2)'],
+                'valid_solutions': ["n = input('Enter N: ');\nfib = zeros(1,n);\nfib(1) = 0;\nfib(2) = 1;\nfor i = 3:n\nfib(i) = fib(i-1) + fib(i-2);\nend\nfprintf('%d ', fib);"]
+            }
+        ]
+
 @app.route('/matlab', methods=['GET', 'POST'])
 def matlab_practice():
-    challenges = [
-        {
-            'id': 1,
-            'title': 'Circle Area and Circumference',
-            'difficulty': 'Easy',
-            'task': 'Write a MATLAB script that calculates the area and circumference of a circle given its radius.',
-            'test_code': '5',
-            'example_input': '5',
-            'expected_output': 'Area = 78.54, Circumference = 31.42',
-            'hints': ['Use pi in MATLAB', 'Area = pi * r^2', 'Circumference = 2 * pi * r'],
-            'valid_solutions': ["r = input('Enter radius: ');\nA = pi * r^2;\nC = 2 * pi * r;\nfprintf('Area = %.2f, Circumference = %.2f\n', A, C);"]
-        },
-        {
-            'id': 2,
-            'title': 'Fibonacci Sequence',
-            'difficulty': 'Medium',
-            'task': 'Write a MATLAB script that generates the first N numbers of the Fibonacci sequence.',
-            'test_code': '6',
-            'example_input': '6',
-            'expected_output': '0 1 1 2 3 5',
-            'hints': ['Use a loop', 'Fibonacci(n) = Fibonacci(n-1) + Fibonacci(n-2)'],
-            'valid_solutions': ["n = input('Enter N: ');\nfib = zeros(1,n);\nfib(1) = 0;\nfib(2) = 1;\nfor i = 3:n\nfib(i) = fib(i-1) + fib(i-2);\nend\nfprintf('%d ', fib);"]
-        }
-    ]
-
     challenge_id = int(request.args.get('id', 1))
     challenge = next((c for c in challenges if c['id'] == challenge_id), None)
 
