@@ -365,6 +365,11 @@ class CChallenges:
             result = run_process.stdout.strip()
 
             expected = challenge['expected_output'].strip()
+            
+            if result == expected:
+                return 'Correct! Well done.'
+            else:
+                return f'Incorrect solution.\nYour output: "{result}"\nExpected: "{expected}"\nTry again!'
 
 if __name__ == '__main__':
     with app.app_context():
