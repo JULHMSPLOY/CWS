@@ -165,6 +165,9 @@ def python_practice():
 
     return render_template('python.html', challenge=challenge, result=result, feedback=feedback, next_challenge=next_challenge, test_status=test_status, total_challenges=len(challenges), current_hint_index=request.form.get('current_hint_index', 0) if request.method == 'POST' else 0)
 
+class MatlabChallenges:
+    @staticmethod
+    
 @app.route('/matlab', methods=['GET', 'POST'])
 def matlab_practice():
     challenges = [
