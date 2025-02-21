@@ -386,7 +386,7 @@ def c_practice():
     feedback = None
     next_challenge = None
     test_status = None
-
+    
     if request.method == 'POST':
         user_code = request.form['code']
         feedback = CChallenges.validate_solution(user_code, challenge)
@@ -394,8 +394,10 @@ def c_practice():
             next_challenge = challenge_id + 1 if challenge_id < len(challenges) else None
             test_status = 'Passed'  
         else:
-            test_status = 'Failed' 
-            
+            test_status = 'Failed'
+
+    return render_template('c.html', challenge=challenge, result=result, feedback=feedback, next_challenge=next_challenge, test_status=test_status, total_challenges=len(challenges), current_hint_index=request.form.get('current_hint_index', 0) if request.method == 'POST' else 0)
+
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()
