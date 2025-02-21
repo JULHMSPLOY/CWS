@@ -356,6 +356,16 @@ class CChallenges:
             with open(filename, 'w') as file:
                 file.write(user_code)
 
+            compile_process = subprocess.run(['gcc', 'user_code.c', '-o', 'user_code'], capture_output=True, text=True)
+            if compile_process.returncode != 0:
+                return f'Error compiling code: {compile_process.stderr}'
+            
+            input_data = challenge['example_input']
+            run_process = subprocess.run(['./user_code'], input=input_data, text=True, capture_output=True, timeout=5)
+            result = run_process.stdout.strip()
+
+            expected = challenge['expected_output'].strip()
+
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()
