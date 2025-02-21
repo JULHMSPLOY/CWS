@@ -228,6 +228,9 @@ def matlab_practice():
 
     return render_template('matlab.html', challenge=challenge, result=result, feedback=feedback, next_challenge=next_challenge, test_status=test_status, total_challenges=len(challenges), current_hint_index=request.form.get('current_hint_index', 0) if request.method == 'POST' else 0)
 
+class SQLChallenges:
+    @staticmethod
+    
 @app.route('/sql', methods=['GET', 'POST'])
 def sql_practice():
     challenges = [
