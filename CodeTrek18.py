@@ -249,6 +249,41 @@ def matlab_practice():
 
 @app.route('/sql', methods=['GET', 'POST'])
 def sql_practice():
+    challenges = [
+        {
+            'id': 1,
+            'title': 'Create Table and Insert Data',
+            'difficulty': 'Easy',
+            'task': 'Write an SQL query to create a table named `students` with columns `id`, `name`, and `age`, and insert data into the table.',
+            'test_code': 'INSERT INTO students (id, name, age) VALUES (1, "John Doe", 25);',
+            'example_input': 'CREATE TABLE students (id INT, name VARCHAR(50), age INT); INSERT INTO students (id, name, age) VALUES (1, "John Doe", 25);',
+            'expected_output': 'Table `students` created and data inserted.',
+            'hints': ['Use the CREATE TABLE statement', 'Use the INSERT INTO statement to add records'],
+            'valid_solutions': ["CREATE TABLE students (id INT, name VARCHAR(50), age INT);\nINSERT INTO students (id, name, age) VALUES (1, 'John Doe', 25);"]
+        },
+        {
+            'id': 2,
+            'title': 'Select Query',
+            'difficulty': 'Easy',
+            'task': 'Write an SQL query to select all the data from the `students` table.',
+            'test_code': 'SELECT * FROM students;',
+            'example_input': 'SELECT * FROM students;',
+            'expected_output': '1 | John Doe | 25',
+            'hints': ['Use the SELECT statement', 'Use the wildcard (*) to select all columns'],
+            'valid_solutions': ["SELECT * FROM students;"]
+        },
+        {
+            'id': 3,
+            'title': 'Update Data',
+            'difficulty': 'Medium',
+            'task': 'Write an SQL query to update the age of the student with id = 1 to 26.',
+            'test_code': 'UPDATE students SET age = 26 WHERE id = 1;',
+            'example_input': 'UPDATE students SET age = 26 WHERE id = 1;',
+            'expected_output': '1 | John Doe | 26',
+            'hints': ['Use the UPDATE statement', 'Use the WHERE clause to specify the row to update'],
+            'valid_solutions': ["UPDATE students SET age = 26 WHERE id = 1;"]
+        }
+    ]
 
 if __name__ == '__main__':
     with app.app_context():
