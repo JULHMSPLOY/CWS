@@ -324,6 +324,11 @@ def sql_practice():
                     feedback = f'Incorrect solution.\nYour output: "{result}"\nExpected: "{expected}"\nTry again!'
                     test_status = 'error'
 
+            except sqlite3.Error as e:
+                feedback = f'Error: {str(e)}'
+                test_status = 'error'
+                result = None
+
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()
