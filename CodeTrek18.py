@@ -299,6 +299,8 @@ def sql_practice():
 
     return render_template('sql.html', challenge=challenge, result=result, feedback=feedback, next_challenge=next_challenge, test_status=test_status, total_challenges=len(challenges), current_hint_index=request.form.get('current_hint_index', 0) if request.method == 'POST' else 0)
 
+class CChallenges:
+    
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()
