@@ -219,7 +219,15 @@ def matlab_practice():
             if current_hint_index < len(challenge['hints']):
                 feedback = f"Hint: {challenge['hints'][current_hint_index]}"
                 test_status = 'hint'
-
+        else:
+            try:
+                input_data = challenge['example_input']
+                process = subprocess.run(
+                    ['matlab', '-batch', user_code],
+                    input=input_data, text=True, capture_output=True, timeout=5
+                )
+                result = process.stdout.strip()
+                expected = challenge['expected_output'].strip()
 
 if __name__ == '__main__':
     with app.app_context():
