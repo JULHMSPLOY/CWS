@@ -93,45 +93,45 @@ def home():
 
 class PythonChallenges:
     @staticmethod
+    def get_challenges():
+        return [
+            {
+                'id': 1,
+                'title': 'Rectangle Calculator',
+                'difficulty': 'Easy',
+                'task': 'A program that receives the width and length of a rectangle and then calculates the area and perimeter (or circumference).',
+                'test_code': 'Rectangle\nEnter width and length: ',
+                'example_input': '4 5',
+                'expected_output': 'Width =  4.0 Length =  5.0\nArea = 20.0, Perimeter = 18.0',
+                'hints': ['Remember to convert input strings to float', 'Area = width * length', 'Perimeter = 2 * (width + length)'],
+                'valid_solutions': ["print('Rectangle')\nwd, lg = input('Enter width and length: ').split()\nwd = float(wd); lg = float(lg)\nprint('Width = ', wd, 'Length = ', lg)\nA = wd*lg\nP = wd+wd+lg+lg\nprint(F'Area = {A}, Perimeter = {P}')"]
+            },
+            {
+                'id': 2,
+                'title': 'Temperature Converter',
+                'difficulty': 'Easy',
+                'task': 'Create a program that converts Celsius to Fahrenheit. Formula: °F = (°C × 9/5) + 32',
+                'test_code': 'Enter temperature in Celsius: ',
+                'example_input': '25',
+                'expected_output': '25.0 Celsius is equal to 77.0 Fahrenheit',
+                'hints': ['Convert input to float', 'Use the formula: F = (C * 9/5) + 32'],
+                'valid_solutions': ["celsius = float(input('Enter temperature in Celsius: '))\nfahrenheit = (celsius * 9/5) + 32\nprint(f'{celsius} Celsius is equal to {fahrenheit} Fahrenheit')"]
+            },
+            {
+                'id': 3,
+                'title': 'Number Sequence',
+                'difficulty': 'Medium',
+                'task': 'Create a program that prints all numbers from 1 to N that are divisible by 3 or 5.',
+                'test_code': 'Enter N: ',
+                'example_input': '15',
+                'expected_output': 'Numbers divisible by 3 or 5 up to 15: 3, 5, 6, 9, 10, 12, 15',
+                'hints': ['Use a for loop to check numbers from 1 to N', 'Use the modulo operator (%) to check divisibility'],
+                'valid_solutions': ["n = int(input('Enter N: '))\nnums = [str(i) for i in range(1,n+1) if i%3==0 or i%5==0]\nprint(f'Numbers divisible by 3 or 5 up to {n}: {', '.join(nums)}')"]
+            }
+        ]
 
 @app.route('/python', methods=['GET', 'POST'])
 def python_practice():
-    challenges = [
-        {
-            'id': 1,
-            'title': 'Rectangle Calculator',
-            'difficulty': 'Easy',
-            'task': 'A program that receives the width and length of a rectangle and then calculates the area and perimeter (or circumference).',
-            'test_code': 'Rectangle\nEnter width and length: ',
-            'example_input': '4 5',
-            'expected_output': 'Width =  4.0 Length =  5.0\nArea = 20.0, Perimeter = 18.0',
-            'hints': ['Remember to convert input strings to float', 'Area = width * length', 'Perimeter = 2 * (width + length)'],
-            'valid_solutions': ["print('Rectangle')\nwd, lg = input('Enter width and length: ').split()\nwd = float(wd); lg = float(lg)\nprint('Width = ', wd, 'Length = ', lg)\nA = wd*lg\nP = wd+wd+lg+lg\nprint(F'Area = {A}, Perimeter = {P}')"]
-        },
-        {
-            'id': 2,
-            'title': 'Temperature Converter',
-            'difficulty': 'Easy',
-            'task': 'Create a program that converts Celsius to Fahrenheit. Formula: °F = (°C × 9/5) + 32',
-            'test_code': 'Enter temperature in Celsius: ',
-            'example_input': '25',
-            'expected_output': '25.0 Celsius is equal to 77.0 Fahrenheit',
-            'hints': ['Convert input to float', 'Use the formula: F = (C * 9/5) + 32'],
-            'valid_solutions': ["celsius = float(input('Enter temperature in Celsius: '))\nfahrenheit = (celsius * 9/5) + 32\nprint(f'{celsius} Celsius is equal to {fahrenheit} Fahrenheit')"]
-        },
-        {
-            'id': 3,
-            'title': 'Number Sequence',
-            'difficulty': 'Medium',
-            'task': 'Create a program that prints all numbers from 1 to N that are divisible by 3 or 5.',
-            'test_code': 'Enter N: ',
-            'example_input': '15',
-            'expected_output': 'Numbers divisible by 3 or 5 up to 15: 3, 5, 6, 9, 10, 12, 15',
-            'hints': ['Use a for loop to check numbers from 1 to N', 'Use the modulo operator (%) to check divisibility'],
-            'valid_solutions': ["n = int(input('Enter N: '))\nnums = [str(i) for i in range(1,n+1) if i%3==0 or i%5==0]\nprint(f'Numbers divisible by 3 or 5 up to {n}: {", ".join(nums)}')"]
-        }
-    ]
-
     challenge_id = int(request.args.get('id', 1))
     challenge = next((c for c in challenges if c['id'] == challenge_id), None)
 
