@@ -131,6 +131,8 @@ def python_practice():
             result = None
             next_challenge = None
 
+    return render_template('python.html', challenge=challenge, result=result, feedback=feedback, next_challenge=next_challenge)
+
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()
