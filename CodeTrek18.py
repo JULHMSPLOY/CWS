@@ -12,7 +12,6 @@ from werkzeug.security import check_password_hash
 import subprocess
 import sqlite3
 
-
 app = Flask(__name__)  
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
 app.config['SECRET_KEY'] = 'your_secret_key'
@@ -282,6 +281,7 @@ class SQLChallenges:
 
 @app.route('/sql', methods=['GET', 'POST'])
 def sql_practice():
+    challenges = SQLChallenges.get_challenges()
     challenge_id = int(request.args.get('id', 1))
     challenge = next((c for c in challenges if c['id'] == challenge_id), None)
 
@@ -292,7 +292,9 @@ def sql_practice():
 
     if request.method == 'POST':
         user_code = request.form['code']
-        show_hint = request.form.get('show_hint', False)
+        feedback = SQLChallenges.validate_solution(user_code, challenge)
+        if "created and data inserted" in feedback:
+            next_challenge = challenge_id + 1 if challenge_id < len(challenges) else None
 
     return render_template('sql.html', challenge=challenge, result=result, feedback=feedback, next_challenge=next_challenge, test_status=test_status, total_challenges=len(challenges), current_hint_index=request.form.get('current_hint_index', 0) if request.method == 'POST' else 0)
 
