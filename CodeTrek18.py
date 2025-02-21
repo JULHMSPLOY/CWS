@@ -378,7 +378,15 @@ class CChallenges:
         
 @app.route('/c', methods=['GET', 'POST'])
 def c_practice():
-        
+    challenges = CChallenges.get_challenges()
+    challenge_id = int(request.args.get('id', 1))
+    challenge = next((c for c in challenges if c['id'] == challenge_id), None)
+
+    result = None
+    feedback = None
+    next_challenge = None
+    test_status = None
+
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()
