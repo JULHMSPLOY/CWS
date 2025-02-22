@@ -41,11 +41,12 @@ CodeTrek18 เป็นเว็บไซต์ฝึกเขียนโปร
 ├── /README.md                   # เอกสารโปรเจค
 ├── /LICENSE.md                  # เอกสารเกี่ยวกับสิทธิ์การใช้งานโปรเจค
 ```
-# How to use  
+# Setup
 - ติดตั้ง Libraries โดยใช้คำสั่งด้านล่างนี้ใน terminal หรือ command prompt
 ```sh 
 pip install flask flask_sqlalchemy flask_bootstrap werkzeug bcrypt
 ```
+# Usage 
 - สร้างเว็บแอปพลิเคชัน Flask
 ```sh 
 from flask import Flask
