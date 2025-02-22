@@ -14,7 +14,6 @@ from werkzeug.utils import secure_filename
 import subprocess
 import sqlite3
 import os
-import bcrypt
 
 app = Flask(__name__)  
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
@@ -114,6 +113,8 @@ def login():
             flash('Invalid username or password', 'danger')
 
     return render_template('login.html')
+
+@app.route('/logout')
 
 @app.route('/profile', methods=['GET', 'POST'])
 def profile():
