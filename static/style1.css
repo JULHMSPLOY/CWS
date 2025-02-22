@@ -1,0 +1,642 @@
+/* Navbar for Python Practice Page */
+.python-page header {
+    background-color: #333333; /* สีดำ */
+    padding: 1rem 2rem;
+}
+
+.python-page .navbar-brand {
+    font-weight: bold;
+    font-size: 1.3rem;
+    color: #ffffff; /* สีขาว */
+}
+
+.python-page .navbar-nav .nav-link {
+    color: #ffffff; /* สีขาว */
+    font-weight: 500;
+    font-size: 0.95rem;
+}
+
+.python-page .navbar-nav .nav-link:hover {
+    color: #d3d3d3; /* สีเทาอ่อนเมื่อ hover */
+}
+
+.python-page .navbar-nav .nav-link.active {
+    font-weight: bold;
+}
+
+/* Challenge Card */
+.python-page .card {
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border: none;
+}
+
+.python-page .card-header {
+    background-color: #555555; /* สีเทาเข้ม */
+    color: #ffffff; /* สีขาว */
+    font-size: 1.2rem;
+    font-weight: bold;
+    border-radius: 10px 10px 0 0;
+}
+
+.python-page .card-body {
+    background-color: #ffffff; /* สีขาว */
+}
+
+.python-page .card-body h5 {
+    font-size: 1.1rem;
+}
+
+.python-page .bg-light {
+    background-color: #f4f4f4; /* สีเทาอ่อน */
+    border-radius: 5px;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.python-page .form-control {
+    font-family: 'Courier New', Courier, monospace;
+    border-radius: 8px;
+    padding: 10px;
+    border: 1px solid #555555; /* ขอบเทา */
+}
+
+.python-page .form-control:focus {
+    border-color: #333333; /* สีดำ */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Code Form */
+.python-page .form-group label {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #333333; /* สีดำ */
+}
+
+.python-page button {
+    font-size: 1rem;
+    padding: 10px 15px;
+    border-radius: 5px;
+    border: 1px solid #555555; /* ขอบเทา */
+    background-color: #555555; /* สีเทาเข้ม */
+    color: #ffffff; /* สีขาว */
+}
+
+.python-page button:hover {
+    background-color: #444444; /* สีเทาเข้มกว่า */
+    opacity: 0.9;
+}
+
+/* Results Section */
+.python-page .alert {
+    border-radius: 10px;
+}
+
+.python-page .alert-success {
+    background-color: #28a745; /* สีเขียว */
+    color: white;
+}
+
+.python-page .alert-info {
+    background-color: #17a2b8; /* สีน้ำเงินฟ้า */
+    color: white;
+}
+
+.python-page .alert-danger {
+    background-color: #dc3545; /* สีแดง */
+    color: white;
+}
+
+.python-page pre {
+    font-family: 'Courier New', Courier, monospace;
+    background-color: #f4f4f4; /* สีเทาอ่อน */
+    padding: 15px;
+    border-radius: 5px;
+}
+
+/* Next Challenge Button */
+.python-page .btn-success {
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 10px 20px;
+    background-color: #555555; /* สีเทาเข้ม */
+    color: #ffffff; /* สีขาว */
+    border: none;
+}
+
+.python-page .btn-success:hover {
+    background-color: #444444; /* สีเทาเข้มกว่า */
+    opacity: 0.9;
+}
+
+/* Padding and Margin Adjustments */
+.python-page .mt-4 {
+    margin-top: 2rem;
+}
+
+.python-page .mb-4 {
+    margin-bottom: 2rem;
+}
+
+/* Navbar for MATLAB Practice Page */
+.matlab-page header {
+    background-color: #333333; /* Dark color */
+    padding: 1rem 2rem;
+}
+
+.matlab-page .navbar-brand {
+    font-weight: bold;
+    font-size: 1.3rem;
+    color: #ffffff; /* White */
+}
+
+.matlab-page .navbar-nav .nav-link {
+    color: #ffffff; /* White */
+    font-weight: 500;
+    font-size: 0.95rem;
+}
+
+.matlab-page .navbar-nav .nav-link:hover {
+    color: #d3d3d3; /* Light grey when hovered */
+}
+
+.matlab-page .navbar-nav .nav-link.active {
+    font-weight: bold;
+}
+
+/* Challenge Card */
+.matlab-page .card {
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border: none;
+}
+
+.matlab-page .card-header {
+    background-color: #555555; /* Dark grey */
+    color: #ffffff; /* White */
+    font-size: 1.2rem;
+    font-weight: bold;
+    border-radius: 10px 10px 0 0;
+}
+
+.matlab-page .card-body {
+    background-color: #ffffff; /* White */
+}
+
+.matlab-page .card-body h5 {
+    font-size: 1.1rem;
+}
+
+.matlab-page .bg-light {
+    background-color: #f4f4f4; /* Light grey */
+    border-radius: 5px;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.matlab-page .form-control {
+    font-family: 'Courier New', Courier, monospace;
+    border-radius: 8px;
+    padding: 10px;
+    border: 1px solid #555555; /* Grey border */
+}
+
+.matlab-page .form-control:focus {
+    border-color: #333333; /* Black */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Code Form */
+.matlab-page .form-group label {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #333333; /* Black */
+}
+
+.matlab-page button {
+    font-size: 1rem;
+    padding: 10px 15px;
+    border-radius: 5px;
+    border: 1px solid #555555; /* Grey border */
+    background-color: #555555; /* Dark grey */
+    color: #ffffff; /* White */
+}
+
+.matlab-page button:hover {
+    background-color: #444444; /* Darker grey */
+    opacity: 0.9;
+}
+
+/* Results Section */
+.matlab-page .alert {
+    border-radius: 10px;
+}
+
+.matlab-page .alert-success {
+    background-color: #28a745; /* Green */
+    color: white;
+}
+
+.matlab-page .alert-info {
+    background-color: #17a2b8; /* Light blue */
+    color: white;
+}
+
+.matlab-page .alert-danger {
+    background-color: #dc3545; /* Red */
+    color: white;
+}
+
+.matlab-page pre {
+    font-family: 'Courier New', Courier, monospace;
+    background-color: #f4f4f4; /* Light grey */
+    padding: 15px;
+    border-radius: 5px;
+}
+
+/* Next Challenge Button */
+.matlab-page .btn-success {
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 10px 20px;
+    background-color: #555555; /* Dark grey */
+    color: #ffffff; /* White */
+    border: none;
+}
+
+.matlab-page .btn-success:hover {
+    background-color: #444444; /* Darker grey */
+    opacity: 0.9;
+}
+
+/* Padding and Margin Adjustments */
+.matlab-page .mt-4 {
+    margin-top: 2rem;
+}
+
+.matlab-page .mb-4 {
+    margin-bottom: 2rem;
+}
+
+/* Hint Section */
+.matlab-page .hint {
+    font-size: 1rem;
+    background-color: #f0f8ff; /* Light blue */
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #d3d3d3;
+}
+
+/* Code Output */
+.matlab-page .output-code {
+    font-family: 'Courier New', Courier, monospace;
+    background-color: #f4f4f4; /* Light grey */
+    padding: 15px;
+    border-radius: 5px;
+}
+
+/* Progress Bar */
+.matlab-page .progress {
+    height: 30px;
+}
+
+.matlab-page .progress-bar {
+    font-size: 16px;
+    color: white;
+    text-align: center;
+    line-height: 30px;
+}
+
+/* Navbar for SQL Practice Page */
+.sql-page header {
+    background-color: #333333; /* Dark color */
+    padding: 1rem 2rem;
+}
+
+.sql-page .navbar-brand {
+    font-weight: bold;
+    font-size: 1.3rem;
+    color: #ffffff; /* White */
+}
+
+.sql-page .navbar-nav .nav-link {
+    color: #ffffff; /* White */
+    font-weight: 500;
+    font-size: 0.95rem;
+}
+
+.sql-page .navbar-nav .nav-link:hover {
+    color: #d3d3d3; /* Light grey when hovered */
+}
+
+.sql-page .navbar-nav .nav-link.active {
+    font-weight: bold;
+}
+
+/* Challenge Card */
+.sql-page .card {
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border: none;
+}
+
+.sql-page .card-header {
+    background-color: #555555; /* Dark grey */
+    color: #ffffff; /* White */
+    font-size: 1.2rem;
+    font-weight: bold;
+    border-radius: 10px 10px 0 0;
+}
+
+.sql-page .card-body {
+    background-color: #ffffff; /* White */
+}
+
+.sql-page .card-body h5 {
+    font-size: 1.1rem;
+}
+
+.sql-page .bg-light {
+    background-color: #f4f4f4; /* Light grey */
+    border-radius: 5px;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.sql-page .form-control {
+    font-family: 'Courier New', Courier, monospace;
+    border-radius: 8px;
+    padding: 10px;
+    border: 1px solid #555555; /* Grey border */
+}
+
+.sql-page .form-control:focus {
+    border-color: #333333; /* Black */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Code Form */
+.sql-page .form-group label {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #333333; /* Black */
+}
+
+.sql-page button {
+    font-size: 1rem;
+    padding: 10px 15px;
+    border-radius: 5px;
+    border: 1px solid #555555; /* Grey border */
+    background-color: #555555; /* Dark grey */
+    color: #ffffff; /* White */
+}
+
+.sql-page button:hover {
+    background-color: #444444; /* Darker grey */
+    opacity: 0.9;
+}
+
+/* Results Section */
+.sql-page .alert {
+    border-radius: 10px;
+}
+
+.sql-page .alert-success {
+    background-color: #28a745; /* Green */
+    color: white;
+}
+
+.sql-page .alert-info {
+    background-color: #17a2b8; /* Light blue */
+    color: white;
+}
+
+.sql-page .alert-danger {
+    background-color: #dc3545; /* Red */
+    color: white;
+}
+
+.sql-page pre {
+    font-family: 'Courier New', Courier, monospace;
+    background-color: #f4f4f4; /* Light grey */
+    padding: 15px;
+    border-radius: 5px;
+}
+
+/* Next Challenge Button */
+.sql-page .btn-success {
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 10px 20px;
+    background-color: #555555; /* Dark grey */
+    color: #ffffff; /* White */
+    border: none;
+}
+
+.sql-page .btn-success:hover {
+    background-color: #444444; /* Darker grey */
+    opacity: 0.9;
+}
+
+/* Padding and Margin Adjustments */
+.sql-page .mt-4 {
+    margin-top: 2rem;
+}
+
+.sql-page .mb-4 {
+    margin-bottom: 2rem;
+}
+
+/* Hint Section */
+.sql-page .hint {
+    font-size: 1rem;
+    background-color: #f0f8ff; /* Light blue */
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #d3d3d3;
+}
+
+/* Code Output */
+.sql-page .output-code {
+    font-family: 'Courier New', Courier, monospace;
+    background-color: #f4f4f4; /* Light grey */
+    padding: 15px;
+    border-radius: 5px;
+}
+
+/* Progress Bar */
+.sql-page .progress {
+    height: 30px;
+}
+
+.sql-page .progress-bar {
+    font-size: 16px;
+    color: white;
+    text-align: center;
+    line-height: 30px;
+}
+
+/* Navbar for C Practice Page */
+.c-page header {
+    background-color: #333333; /* Dark color */
+    padding: 1rem 2rem;
+}
+
+.c-page .navbar-brand {
+    font-weight: bold;
+    font-size: 1.3rem;
+    color: #ffffff; /* White */
+}
+
+.c-page .navbar-nav .nav-link {
+    color: #ffffff; /* White */
+    font-weight: 500;
+    font-size: 0.95rem;
+}
+
+.c-page .navbar-nav .nav-link:hover {
+    color: #d3d3d3; /* Light grey when hovered */
+}
+
+.c-page .navbar-nav .nav-link.active {
+    font-weight: bold;
+}
+
+/* Challenge Card */
+.c-page .card {
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border: none;
+}
+
+.c-page .card-header {
+    background-color: #555555; /* Dark grey */
+    color: #ffffff; /* White */
+    font-size: 1.2rem;
+    font-weight: bold;
+    border-radius: 10px 10px 0 0;
+}
+
+.c-page .card-body {
+    background-color: #ffffff; /* White */
+}
+
+.c-page .card-body h5 {
+    font-size: 1.1rem;
+}
+
+.c-page .bg-light {
+    background-color: #f4f4f4; /* Light grey */
+    border-radius: 5px;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.c-page .form-control {
+    font-family: 'Courier New', Courier, monospace;
+    border-radius: 8px;
+    padding: 10px;
+    border: 1px solid #555555; /* Grey border */
+}
+
+.c-page .form-control:focus {
+    border-color: #333333; /* Black */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Code Form */
+.c-page .form-group label {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #333333; /* Black */
+}
+
+.c-page button {
+    font-size: 1rem;
+    padding: 10px 15px;
+    border-radius: 5px;
+    border: 1px solid #555555; /* Grey border */
+    background-color: #555555; /* Dark grey */
+    color: #ffffff; /* White */
+}
+
+.c-page button:hover {
+    background-color: #444444; /* Darker grey */
+    opacity: 0.9;
+}
+
+/* Results Section */
+.c-page .alert {
+    border-radius: 10px;
+}
+
+.c-page .alert-success {
+    background-color: #28a745; /* Green */
+    color: white;
+}
+
+.c-page .alert-info {
+    background-color: #17a2b8; /* Light blue */
+    color: white;
+}
+
+.c-page .alert-danger {
+    background-color: #dc3545; /* Red */
+    color: white;
+}
+
+.c-page pre {
+    font-family: 'Courier New', Courier, monospace;
+    background-color: #f4f4f4; /* Light grey */
+    padding: 15px;
+    border-radius: 5px;
+}
+
+/* Next Challenge Button */
+.c-page .btn-success {
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 10px 20px;
+    background-color: #555555; /* Dark grey */
+    color: #ffffff; /* White */
+    border: none;
+}
+
+.c-page .btn-success:hover {
+    background-color: #444444; /* Darker grey */
+    opacity: 0.9;
+}
+
+/* Padding and Margin Adjustments */
+.c-page .mt-4 {
+    margin-top: 2rem;
+}
+
+.c-page .mb-4 {
+    margin-bottom: 2rem;
+}
+
+/* Hint Section */
+.c-page .hint {
+    font-size: 1rem;
+    background-color: #f0f8ff; /* Light blue */
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #d3d3d3;
+}
+
+/* Code Output */
+.c-page .output-code {
+    font-family: 'Courier New', Courier, monospace;
+    background-color: #f4f4f4; /* Light grey */
+    padding: 15px;
+    border-radius: 5px;
+}
+
+/* Progress Bar */
+.c-page .progress {
+    height: 30px;
+}
+
+.c-page .progress-bar {
+    font-size: 16px;
+    color: white;
+    text-align: center;
+    line-height: 30px;
+}

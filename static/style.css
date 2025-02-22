@@ -7,32 +7,32 @@
 
 body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    background-color: #FFFAF0;
-    color: #2C1810;
+    background-color: #FFFFFF; /* สีขาว */
+    color: #333333; /* สีดำอ่อน */
     line-height: 1.6;
 }
 
 /* Styles specific to index.html */
 .index-page header {
-    background-color: #4A3527;
+    background-color: #333333; /* สีดำ */
     padding: 1rem 2rem;
-    box-shadow: 0 2px 10px rgba(44, 24, 16, 0.1);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .index-page .logo {
     font-weight: bold;
     font-size: 1.3rem;
-    color: #FFFAF0;
+    color: #FFFFFF; /* สีขาว */
 }
 
 .index-page .nav-link {
-    color: #FFFAF0;
+    color: #FFFFFF; /* สีขาว */
     font-weight: 500;
     font-size: 0.95rem;
 }
 
 .index-page .nav-link:hover {
-    color: #FFFFFF;
+    color: #D3D3D3; /* สีเทาอ่อนเมื่อ hover */
 }
 
 .index-page .auth-buttons button {
@@ -43,27 +43,27 @@ body {
 }
 
 .index-page .btn-primary {
-    background-color: #8B4513;
-    color: #FFFFFF;
+    background-color: #555555; /* เทาเข้ม */
+    color: #FFFFFF; /* สีขาว */
     border: none;
 }
 
 .index-page .btn-primary:hover {
-    background-color: #6B3410;
+    background-color: #444444; /* เทาเข้มกว่า */
 }
 
 .index-page .btn-secondary {
     background-color: transparent;
-    border: 1px solid #FFFAF0;
-    color: #FFFAF0;
+    border: 1px solid #333333; /* ขอบสีดำ */
+    color: #333333; /* สีดำ */
 }
 
 .index-page .btn-secondary:hover {
-    background-color: rgba(255, 250, 240, 0.1);
+    background-color: rgba(0, 0, 0, 0.1); /* สีดำอ่อนเมื่อ hover */
 }
 
 .index-page main {
-    background-color: #FFFAF0;
+    background-color: #FFFFFF; /* สีขาว */
     min-height: 80vh;
     display: flex;
     flex-direction: column;
@@ -79,7 +79,7 @@ body {
 
 .index-page h1 {
     font-size: 3.2rem;
-    color: #2C1810;
+    color: #333333; /* สีดำ */
     margin-bottom: 0.5rem;
     line-height: 1.2;
     font-weight: 600;
@@ -87,7 +87,7 @@ body {
 
 .index-page .tagline {
     font-size: 1.1rem;
-    color: #8B4513;
+    color: #555555; /* เทาเข้ม */
     font-weight: 500;
     letter-spacing: 1px;
     text-transform: uppercase;
@@ -103,43 +103,42 @@ body {
 .index-page .search-bar input {
     flex: 1;
     padding: 0.75rem 1rem;
-    border: 1px solid #8B4513;
+    border: 1px solid #555555; /* เทาเข้ม */
     border-radius: 6px;
     font-size: 0.95rem;
-    background-color: #FFFFFF;
-    color: #2C1810;
+    background-color: #FFFFFF; /* สีขาว */
+    color: #333333; /* สีดำ */
 }
 
 .index-page .search-bar input::placeholder {
-    color: #8B4513;
+    color: #555555; /* เทาเข้ม */
     opacity: 0.7;
 }
 
 .index-page .search-bar button {
     padding: 0.75rem 1rem;
-    background-color: #8B4513;
-    color: #FFFFFF;
+    background-color: #555555; /* เทาเข้ม */
+    color: #FFFFFF; /* สีขาว */
     border: none;
-    border-radius: 6px;
 }
 
 .index-page .search-bar button:hover {
-    background-color: #6B3410;
+    background-color: #444444; /* เทาเข้มกว่า */
 }
 
 
 /* Styles specific to signup.html */
 .signup-page body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    background-color: #FFFAF0;
-    color: #2C1810;
+    background-color: #FFFFFF; /* สีขาว */
+    color: #333333; /* สีดำ */
     line-height: 1.6;
 }
 
 .signup-page .container {
     max-width: 500px;
     padding: 30px;
-    background-color: #FFFFFF;
+    background-color: #FFFFFF; /* สีขาว */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
     margin-top: 50px;
@@ -148,53 +147,53 @@ body {
 .signup-page .form-title {
     text-align: center;
     font-size: 2rem;
-    color: #8B4513;
+    color: #333333; /* สีดำ */
     margin-bottom: 20px;
 }
 
 .signup-page .btn-primary {
-    background-color: #8B4513;
-    color: #FFFFFF;
+    background-color: #555555; /* เทาเข้ม */
+    color: #FFFFFF; /* สีขาว */
     border: none;
 }
 
 .signup-page .btn-primary:hover {
-    background-color: #6B3410;
+    background-color: #444444; /* เทาเข้มกว่า */
 }
 
 .signup-page .form-group input {
     border-radius: 6px;
-    border: 1px solid #8B4513;
+    border: 1px solid #555555; /* เทาเข้ม */
     padding: 0.75rem;
     width: 100%;
     margin-bottom: 15px;
 }
 
 .signup-page .form-group input::placeholder {
-    color: #8B4513;
+    color: #555555; /* เทาเข้ม */
 }
 
 /* Styles specific to login.html */
 .login-page header {
-    background-color: #4A3527;
+    background-color: #333333; /* สีดำ */
     padding: 1rem 2rem;
-    box-shadow: 0 2px 10px rgba(44, 24, 16, 0.1);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .login-page .logo {
     font-weight: bold;
     font-size: 1.3rem;
-    color: #FFFAF0;
+    color: #FFFFFF; /* สีขาว */
 }
 
 .login-page .nav-link {
-    color: #FFFAF0;
+    color: #FFFFFF; /* สีขาว */
     font-weight: 500;
     font-size: 0.95rem;
 }
 
 .login-page .nav-link:hover {
-    color: #FFFFFF;
+    color: #D3D3D3; /* สีเทาอ่อนเมื่อ hover */
 }
 
 .login-page .auth-buttons button {
@@ -205,27 +204,27 @@ body {
 }
 
 .login-page .btn-primary {
-    background-color: #8B4513;
-    color: #FFFFFF;
+    background-color: #555555; /* เทาเข้ม */
+    color: #FFFFFF; /* สีขาว */
     border: none;
 }
 
 .login-page .btn-primary:hover {
-    background-color: #6B3410;
+    background-color: #444444; /* เทาเข้มกว่า */
 }
 
 .login-page .btn-secondary {
     background-color: transparent;
-    border: 1px solid #FFFAF0;
-    color: #FFFAF0;
+    border: 1px solid #333333; /* ขอบสีดำ */
+    color: #333333; /* สีดำ */
 }
 
 .login-page .btn-secondary:hover {
-    background-color: rgba(255, 250, 240, 0.1);
+    background-color: rgba(0, 0, 0, 0.1); /* สีดำอ่อนเมื่อ hover */
 }
 
 .login-page main {
-    background-color: #FFFAF0;
+    background-color: #FFFFFF; /* สีขาว */
     min-height: 80vh;
     display: flex;
     flex-direction: column;
@@ -239,7 +238,7 @@ body {
     max-width: 400px;
     width: 100%;
     padding: 2rem;
-    background-color: #FFFFFF;
+    background-color: #FFFFFF; /* สีขาว */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
 }
@@ -247,25 +246,25 @@ body {
 .login-page .login-form .form-title {
     text-align: center;
     font-size: 2rem;
-    color: #8B4513;
+    color: #333333; /* สีดำ */
     margin-bottom: 20px;
 }
 
 .login-page .form-group input {
     border-radius: 6px;
-    border: 1px solid #8B4513;
+    border: 1px solid #555555; /* เทาเข้ม */
     padding: 0.75rem;
     width: 100%;
     margin-bottom: 15px;
 }
 
 .login-page .form-group input::placeholder {
-    color: #8B4513;
+    color: #555555; /* เทาเข้ม */
 }
 
 .login-page .forgot-password {
     font-size: 0.9rem;
-    color: #8B4513;
+    color: #555555; /* เทาเข้ม */
     text-decoration: none;
     margin-top: 10px;
 }
@@ -274,150 +273,66 @@ body {
     text-decoration: underline;
 }
 
-/* Styles specific to python.html */
-.python-page header {
-    background-color: #4A3527;
-    padding: 1rem 2rem;
-    box-shadow: 0 2px 10px rgba(44, 24, 16, 0.1);
+.choose_challenge-page {
+    text-align: left; /* ข้อความทั้งหมดจะชิดซ้าย */
 }
 
-.python-page .logo {
-    font-weight: bold;
-    font-size: 1.3rem;
-    color: #FFFAF0;
-}
-
-.python-page .nav-link {
-    color: #FFFAF0;
-    font-weight: 500;
-    font-size: 0.95rem;
-}
-
-.python-page .nav-link:hover {
-    color: #FFFFFF;
-}
-
-.python-page .auth-buttons button {
-    padding: 0.5rem 1.2rem;
-    border-radius: 6px;
-    font-weight: 500;
-    font-size: 0.9rem;
-}
-
-.python-page .btn-primary {
-    background-color: #8B4513;
-    color: #FFFFFF;
-    border: none;
-}
-
-.python-page .btn-primary:hover {
-    background-color: #6B3410;
-}
-
-.python-page .btn-secondary {
-    background-color: transparent;
-    border: 1px solid #FFFAF0;
-    color: #FFFAF0;
-}
-
-.python-page .btn-secondary:hover {
-    background-color: rgba(255, 250, 240, 0.1);
-}
-
-.python-page main {
-    background-color: #FFFAF0;
-    min-height: 80vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+.choose_challenge-page .challenge-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
     padding: 2rem;
-    text-align: center;
 }
 
-.python-page h1 {
-    font-size: 3.2rem;
-    color: #2C1810;
-    margin-bottom: 0.5rem;
-    line-height: 1.2;
-    font-weight: 600;
+.choose_challenge-page .challenge-card {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    padding: 1.5rem;
+    transition: transform 0.2s;
 }
 
-.python-page .form-title {
-    font-size: 2rem;
-    color: #8B4513;
-    margin-bottom: 1.5rem;
+.choose_challenge-page .challenge-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
 
-.python-page .code-container {
-    width: 100%;
-    max-width: 800px;
-    padding: 20px;
-    background-color: #FFFFFF;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-    margin-bottom: 2rem;
+.choose_challenge-page .language-title {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #2c3e50;
 }
 
-.python-page .code-container textarea {
-    width: 100%;
-    height: 200px;
-    border-radius: 6px;
-    border: 1px solid #8B4513;
-    padding: 0.75rem;
-    font-size: 1rem;
-    color: #2C1810;
-    background-color: #FFFFFF;
+.choose_challenge-page .challenge-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
 }
 
-.python-page .code-container button {
-    padding: 0.75rem 1rem;
-    background-color: #8B4513;
-    color: #FFFFFF;
-    border: none;
-    border-radius: 6px;
-    font-size: 1rem;
+.choose_challenge-page .challenge-item {
+    padding: 0.5rem;
+    margin: 0.5rem 0;
+    background: #f8f9fa;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.2s;
 }
 
-.python-page .code-container button:hover {
-    background-color: #6B3410;
+.choose_challenge-page .challenge-item:hover {
+    background: #e9ecef;
 }
 
-.python-page .result-container {
-    width: 100%;
-    max-width: 800px;
-    padding: 20px;
-    background-color: #FFFFFF;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-    margin-bottom: 2rem;
-}
-
-.python-page .result-container pre {
-    font-family: "Courier New", Courier, monospace;
-    background-color: #F4F4F4;
-    padding: 1rem;
-    border-radius: 6px;
-    color: #2C1810;
-}
-
-.python-page .feedback {
-    font-size: 1rem;
-    margin-top: 1rem;
-    font-weight: 500;
-}
-
-.python-page .next-challenge {
-    margin-top: 2rem;
-    font-size: 1.1rem;
-}
-
-.python-page .next-challenge a {
-    color: #8B4513;
+.choose_challenge-page .challenge-link {
     text-decoration: none;
-    font-weight: 500;
+    color: #495057;
+    display: block;
 }
 
-.python-page .next-challenge a:hover {
-    text-decoration: underline;
+.choose_challenge-page .challenge-difficulty {
+    font-size: 0.875rem;
+    color: #6c757d;
+    margin-top: 0.25rem;
 }
+
+
+

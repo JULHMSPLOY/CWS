@@ -120,6 +120,10 @@ def profile():
                 file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
                 user.profile_picture = filename
 
+            db.session.commit()  
+            flash('Profile updated successfully!', 'success')
+            return redirect(url_for('profile'))
+
 @app.route('/')
 def home():
     return render_template('index.html')

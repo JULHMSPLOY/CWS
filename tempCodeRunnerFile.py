@@ -1,5 +1,8 @@
-if password != confirm_password:
-            return "Passwords do not match."
-        
-        if len(password) < 10:  
-            return "Password must be at least 10 characters long."
+@app.route('/choose_challenge', methods=['GET'])
+def choose_challenge(self):
+        challenges = {
+            'Python': '/python',
+            'MATLAB': '/matlab',
+            'SQL': '/sql',
+            'C': '/c'
+        }

@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Python Practice</title>
+    <title>{{ challenge.title }} - SQL Practice</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='style1.css') }}">
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
-            <a class="navbar-brand" href="{{ url_for('home') }}">Python Learning</a>
+            <a class="navbar-brand" href="{{ url_for('home') }}">SQL Learning</a>
             <div class="navbar-nav">
                 <a class="nav-link" href="{{ url_for('home') }}">Home</a>
-                <a class="nav-link active" href="{{ url_for('python_practice') }}">Practice</a>
+                <a class="nav-link active" href="{{ url_for('sql_practice') }}">Practice</a>
             </div>
         </div>
     </nav>
@@ -66,7 +66,7 @@
             <!-- Code Form -->
             <form method="POST">
                 <div class="form-group">
-                    <label for="code"><h5>Your Solution:</h5></label>
+                    <label for="code"><h5>Your SQL Query:</h5></label>
                     <textarea class="form-control font-monospace" 
                               id="code" 
                               name="code" 
@@ -75,7 +75,7 @@
                 </div>
                 
                 <div class="mb-4">
-                    <button type="submit" class="btn btn-primary mr-2">Run Code</button>
+                    <button type="submit" class="btn btn-primary mr-2">Run Query</button>
                     <button type="submit" name="show_hint" value="true" class="btn btn-info">
                         Get Hint
                     </button>
@@ -105,7 +105,7 @@
 
             <!-- Next Challenge Button -->
             {% if next_challenge %}
-                <a href="{{ url_for('python_practice', id=next_challenge) }}" 
+                <a href="{{ url_for('sql_practice', id=next_challenge) }}" 
                    class="btn btn-success">
                     Next Challenge →
                 </a>

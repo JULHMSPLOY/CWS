@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Choose Challenge</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="choose_challenge-page">
+    <div class="container">
+        <h1 class="text-center my-4 text-left">Choose Your Challenge</h1>
+        <div class="challenge-grid">
+            <!-- Python Card -->
+            <div class="challenge-card">
+                <h2 class="language-title">Python</h2>
+                <ul class="challenge-list">
+                    <li class="challenge-item">
+                        <a href="/python?id=1" class="challenge-link">
+                            Rectangle Calculator
+                            <div class="challenge-difficulty">Difficulty: Easy</div>
+                        </a>
+                    </li>
+                    <li class="challenge-item">
+                        <a href="/python?id=2" class="challenge-link">
+                            Temperature Converter
+                            <div class="challenge-difficulty">Difficulty: Easy</div>
+                        </a>
+                    </li>
+                    <li class="challenge-item">
+                        <a href="/python?id=3" class="challenge-link">
+                            Number Sequence
+                            <div class="challenge-difficulty">Difficulty: Medium</div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- MATLAB Card -->
+            <div class="challenge-card">
+                <h2 class="language-title">MATLAB</h2>
+                <ul class="challenge-list">
+                    <li class="challenge-item">
+                        <a href="/matlab?id=1" class="challenge-link">
+                            Circle Area and Circumference
+                            <div class="challenge-difficulty">Difficulty: Easy</div>
+                        </a>
+                    </li>
+                    <li class="challenge-item">
+                        <a href="/matlab?id=2" class="challenge-link">
+                            Fibonacci Sequence
+                            <div class="challenge-difficulty">Difficulty: Medium</div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- SQL Card -->
+            <div class="challenge-card">
+                <h2 class="language-title">SQL</h2>
+                <ul class="challenge-list">
+                    <li class="challenge-item">
+                        <a href="/sql?id=1" class="challenge-link">
+                            Create Table and Insert Data
+                            <div class="challenge-difficulty">Difficulty: Easy</div>
+                        </a>
+                    </li>
+                    <li class="challenge-item">
+                        <a href="/sql?id=2" class="challenge-link">
+                            Select Query
+                            <div class="challenge-difficulty">Difficulty: Easy</div>
+                        </a>
+                    </li>
+                    <li class="challenge-item">
+                        <a href="/sql?id=3" class="challenge-link">
+                            Update Data
+                            <div class="challenge-difficulty">Difficulty: Medium</div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- C Card -->
+            <div class="challenge-card">
+                <h2 class="language-title">C</h2>
+                <ul class="challenge-list">
+                    <li class="challenge-item">
+                        <a href="/c?id=1" class="challenge-link">
+                            Rectangle Calculator
+                            <div class="challenge-difficulty">Difficulty: Easy</div>
+                        </a>
+                    </li>
+                    <li class="challenge-item">
+                        <a href="/c?id=2" class="challenge-link">
+                            Temperature Converter
+                            <div class="challenge-difficulty">Difficulty: Easy</div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
