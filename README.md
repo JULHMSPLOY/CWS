@@ -37,8 +37,9 @@ CodeTrek18 เป็นเว็บแอปพลิเคชันสำหร
 │   ├── sql.html                 # หน้าให้ฝึกเขียนโค้ด SQL
 │   ├── c.html                   # หน้าให้ฝึกเขียนโค้ด C
 ├── /app.py                      # ไฟล์แอปพลิเคชันหลักของ Flask
-├── /test.db                     # ไฟล์ฐานข้อมูล SQLite
-├── /requirements.txt            # รายการของไลบรารี Python ที่จำเป็น (Flask, Flask-SQLAlchemy, Flask-Bootstrap, ฯลฯ)
+├── /instence
+│   ├── test.db                  # ไฟล์ฐานข้อมูล SQLite
+├── /requirements.txt            # รายการของไลบรารี Python ที่จำเป็น (Flask, Flask-SQLAlchemy, Flask-Bootstrap, etc.)
 ├── /README.md                   # เอกสารโปรเจค
 ├── /LICENSE.md                  # เอกสารเกี่ยวกับสิทธิ์การใช้งานโปรเจค
 ```
