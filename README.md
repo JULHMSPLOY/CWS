@@ -9,7 +9,6 @@ CodeTrek18 เป็นเว็บไซต์ฝึกเขียนโปร
 - SQLAIchemy สำหรับการจัดการฐานข้อมูล
 - Bootstrap เป็น CSS Framework สำหรับการออกแบบหน้าตาเว็บแอปพลิเคชัน
 - Werkzenug สำหรับการเข้ารหัสผ่าน
-- bcrypt สำหรับแปลงข้อมูล เป็นการ Hashing รหัสผ่าน
 - subprocess สำหรับการรันโปรแกรมของผู้ใช้และตรวจสอบผลลัพธ์
 - jinja2 สำหรับแสดงผล HTML templates
 # How to use  
@@ -41,6 +40,11 @@ class User(db.Model):
     joined = db.Column(db.DateTime, default=datetime.utcnow)
     skills = db.Column(db.String(200), nullable=True)
     profile_picture = db.Column(db.String(120), nullable=True)
+```
+- ในฟังก์ชัน signup() จะมีการตรวจสอบว่า username กับ email ซ้ำกันหรือไม่ โดยใช้ generate_password_hash จาก werkzeug.security ในการเข้ารหัสผ่าน
+```sh
+hashed_password = generate_password_hash(password, method='pbkdf2:sha256')
+new_user = User(username=username, email=email, password=hashed_password)
 ```
 # License
 This project is licensed under the MIT License - see the [LICENSE](LICENSE.md) file for details.
