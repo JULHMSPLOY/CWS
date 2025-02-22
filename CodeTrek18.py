@@ -158,7 +158,9 @@ def results():
         'MATLAB': random.randint(50, 100),
         'SQL': random.randint(50, 100),
         'C': random.randint(50, 100),
-    }
+     }
+     
+     return render_template('results.html', progress_data=progress_data)
 
 @app.route('/')
 def home():
