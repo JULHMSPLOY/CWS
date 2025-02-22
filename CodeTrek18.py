@@ -102,6 +102,12 @@ def login():
 def profile():
     if 'user_id' in session:
         user = User.query.get(session['user_id'])
+        if request.method == 'POST':
+            first_name = request.form['first_name']
+            last_name = request.form['last_name']
+            email = request.form['email']
+            skills = request.form['skills']
+            file = request.files['profile_picture']
 
 @app.route('/')
 def home():
