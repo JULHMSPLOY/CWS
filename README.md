@@ -96,5 +96,11 @@ pip install -r requirements.txt
 flask run
 ```
 Open your browser and go to <http://127.0.0.1:5000>
+# Database Setup (If needed)
+If the database (users.db) is not created yet, run the following
+```sh
+python init_db.py
+```
+This will initialize the SQLite database.
 # License
 This project is licensed under the MIT License - see the [LICENSE](LICENSE.md) file for details.
