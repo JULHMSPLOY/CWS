@@ -34,6 +34,7 @@ CodeTrek18 เป็นเว็บไซต์ฝึกเขียนโปร
 ├── /test.db                     # ไฟล์ฐานข้อมูล SQLite
 ├── /requirements.txt            # รายการของไลบรารี Python ที่จำเป็น (Flask, Flask-SQLAlchemy, Flask-Bootstrap, ฯลฯ)
 ├── /README.md                   # เอกสารโปรเจค
+├── /LICENSE.md 
 ```
 # How to use  
 - ติดตั้ง Libraries โดยใช้คำสั่งด้านล่างนี้ใน terminal หรือ command prompt
