@@ -3,6 +3,9 @@ CodeTrek18 เป็นเว็บไซต์ฝึกเขียนโปร
 # Project Setup
 โปรเจกต์นี้ใช้ Flask สำหรับการพัฒนาเว็บแอปพลิเคชัน และ SQLAIchemy สำหรับการจัดการฐานข้อมูล และ Bootstrap (CSS Framework) สำหรับการออกแบบหน้าตาเว็บแอปพลิเคชัน รวมถึงยังมีการใช้ Flask สำหรับการจัดการในการยืนยันตัวตน (Authentication) และข้อมูลของผู้ใช้ (Profile) อีกด้วย โดยมีขั้นตอนการติดตั้ง ดังต่อไปนี้
 1.ติดตั้ง Libraries ที่จำเป็น
-````sh`(pip install flask flask_sqlalchemy flask_bootstrap werkzeug bcrypt)
+To install the required dependencies, run the following command:
+
+```sh
+pip install flask flask_sqlalchemy flask_bootstrap werkzeug bcrypt
 # License
 This project is licensed under the MIT License - see the [LICENSE](LICENSE.md) file for details.
