@@ -81,5 +81,20 @@ def home():
 ```sh
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 ```
+# Start Guide
+- Clone the repository
+```sh
+git clone https://github.com/JULHMSPLOY/CodeTrek18.git
+cd CWS
+```
+- Install dependencies
+```sh
+pip install -r requirements.txt
+```
+- Run the application
+```sh
+flask run
+```
+Open your browser and go to <http://127.0.0.1:5000>
 # License
 This project is licensed under the MIT License - see the [LICENSE](LICENSE.md) file for details.
