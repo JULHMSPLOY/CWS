@@ -20,6 +20,8 @@ CodeTrek18 เป็นเว็บไซต์ฝึกเขียนโปร
 /project-root
 ├── /static
 │   ├── /profile_pics            # โฟลเดอร์สำหรับเก็บภาพโปรไฟล์ที่ผู้ใช้อัปโหลด
+│   ├── style.css                # ไฟล์ CSS สำหรับการออกแบบของแอปพลิเคชัน
+│   ├── style1.css               # ไฟล์ CSS อื่น ๆ สำหรับการออกแบบที่อาจจะใช้ในการจัดรูปแบบเพิ่มเติม
 ├── /templates
 │   ├── index.html               # หน้าแรกของแอป
 │   ├── signup.html              # หน้าให้ผู้ใช้ลงทะเบียน
@@ -34,7 +36,7 @@ CodeTrek18 เป็นเว็บไซต์ฝึกเขียนโปร
 ├── /test.db                     # ไฟล์ฐานข้อมูล SQLite
 ├── /requirements.txt            # รายการของไลบรารี Python ที่จำเป็น (Flask, Flask-SQLAlchemy, Flask-Bootstrap, ฯลฯ)
 ├── /README.md                   # เอกสารโปรเจค
-├── /LICENSE.md 
+├── /LICENSE.md                  # เอกสารเกี่ยวกับสิทธิ์การใช้งานโปรเจค
 ```
 # How to use  
 - ติดตั้ง Libraries โดยใช้คำสั่งด้านล่างนี้ใน terminal หรือ command prompt
