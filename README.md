@@ -13,6 +13,28 @@ CodeTrek18 เป็นเว็บไซต์ฝึกเขียนโปร
 - subprocess สำหรับการเรียกใช้งานคำสั่งจากภายนอก
 - sqlite3 สำหรับการเชื่อมต่อและจัดการฐานข้อมูล SQLite โดยตรง
 - os สำหรับการจัดการกับระบบไฟล์
+# Features
+
+# Directory Structure
+```sh
+/project-root
+├── /static
+│   ├── /profile_pics            # โฟลเดอร์สำหรับเก็บภาพโปรไฟล์ที่ผู้ใช้อัปโหลด
+├── /templates
+│   ├── index.html               # หน้าแรกของแอป
+│   ├── signup.html              # หน้าให้ผู้ใช้ลงทะเบียน
+│   ├── login.html               # หน้าให้ผู้ใช้เข้าสู่ระบบ
+│   ├── profile.html             # หน้าโปรไฟล์ของผู้ใช้
+│   ├── choose_challenge.html    # หน้าเลือกโจทย์ฝึก
+│   ├── python.html              # หน้าให้ฝึกเขียนโค้ด Python
+│   ├── matlab.html              # หน้าให้ฝึกเขียนโค้ด MATLAB
+│   ├── sql.html                 # หน้าให้ฝึกเขียนโค้ด SQL
+│   ├── c.html                   # หน้าให้ฝึกเขียนโค้ด C
+├── /app.py                      # ไฟล์แอปพลิเคชันหลักของ Flask
+├── /test.db                     # ไฟล์ฐานข้อมูล SQLite
+├── /requirements.txt            # รายการของไลบรารี Python ที่จำเป็น (Flask, Flask-SQLAlchemy, Flask-Bootstrap, ฯลฯ)
+├── /README.md                   # เอกสารโปรเจค
+```
 # How to use  
 - ติดตั้ง Libraries โดยใช้คำสั่งด้านล่างนี้ใน terminal หรือ command prompt
 ```sh 
