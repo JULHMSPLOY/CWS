@@ -23,7 +23,11 @@ pip install flask flask_sqlalchemy flask_bootstrap werkzeug bcrypt
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'  
 app.config['SECRET_KEY'] = 'your_secret_key'  
 app.config['UPLOAD_FOLDER'] = 'static/profile_pics'  
-app.config['ALLOWED_EXTENSIONS'] ={'png', 'jpg', 'jpeg', 'gif'}  
+app.config['ALLOWED_EXTENSIONS'] ={'png', 'jpg', 'jpeg', 'gif'} 
+```
+- ใช้ SQLAlchemy เพื่อเชื่อมต่อกับฐานข้อมูล SQLite
+```sh 
+db = SQLAlchemy(app)
 ```
 # License
 This project is licensed under the MIT License - see the [LICENSE](LICENSE.md) file for details.
