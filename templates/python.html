@@ -23,7 +23,7 @@
             <!-- Progress -->
             <div class="mb-4">
                 <div class="progress">
-                    <div class="progress-bar progress-bar-striped progress-bar-animated w-{{ (challenge.id / total_challenges * 100)|round|int }}">
+                    <div class="progress-bar progress-bar-striped progress-bar-animated w-{{ (challenge.id / total_challenges * 100)|round|int }}%">
                         Challenge {{ challenge.id }} / {{ total_challenges }}
                     </div>
                 </div>
@@ -76,8 +76,11 @@
                 
                 <div class="mb-4">
                     <button type="submit" class="btn btn-primary mr-2">Run Code</button>
-                    <button type="submit" name="show_hint" value="true" class="btn btn-info">
+                    <button type="submit" name="action" value="show_hint" class="btn btn-info">
                         Get Hint
+                    </button>
+                    <button type="submit" name="action" value="show_solution" class="btn btn-secondary">
+                        Show Solution
                     </button>
                     <input type="hidden" name="current_hint_index" value="{{ current_hint_index }}">
                 </div>
@@ -103,6 +106,18 @@
                 </div>
             {% endif %}
 
+            <!-- Solution Display -->
+            {% if solution %}
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h5 class="m-0">Solution</h5>
+                    </div>
+                    <div class="card-body">
+                        <pre class="bg-light p-3 rounded">{{ solution }}</pre>
+                    </div>
+                </div>
+            {% endif %}
+
             <!-- Next Challenge Button -->
             {% if next_challenge %}
                 <a href="{{ url_for('python_practice', id=next_challenge) }}" 
@@ -110,16 +125,10 @@
                     Next Challenge →
                 </a>
             {% endif %}
-
         {% else %}
-            <div class="alert alert-warning">
-                Challenge not found!
-            </div>
+            <p>No challenge found!</p>
         {% endif %}
     </div>
-
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
+

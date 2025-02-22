@@ -66,7 +66,7 @@
             <!-- Code Form -->
             <form method="POST">
                 <div class="form-group">
-                    <label for="code"><h5>Your C Code:</h5></label>
+                    <label for="code"><h5>Your Solution:</h5></label>
                     <textarea class="form-control font-monospace" 
                               id="code" 
                               name="code" 
@@ -76,8 +76,11 @@
                 
                 <div class="mb-4">
                     <button type="submit" class="btn btn-primary mr-2">Run Code</button>
-                    <button type="submit" name="show_hint" value="true" class="btn btn-info">
+                    <button type="submit" name="action" value="show_hint" class="btn btn-info">
                         Get Hint
+                    </button>
+                    <button type="submit" name="action" value="show_solution" class="btn btn-secondary">
+                        Show Solution
                     </button>
                     <input type="hidden" name="current_hint_index" value="{{ current_hint_index }}">
                 </div>
@@ -122,3 +125,4 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
+

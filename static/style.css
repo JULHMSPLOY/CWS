@@ -35,33 +35,47 @@ body {
     color: #D3D3D3; /* สีเทาอ่อนเมื่อ hover */
 }
 
-.index-page .auth-buttons button {
+.index-page .auth-buttons a {
     padding: 0.5rem 1.2rem;
     border-radius: 6px;
     font-weight: 500;
     font-size: 0.9rem;
 }
 
-.index-page .btn-primary {
+.index-page .btn-dark {
     background-color: #555555; /* เทาเข้ม */
     color: #FFFFFF; /* สีขาว */
     border: none;
 }
 
-.index-page .btn-primary:hover {
+.index-page .btn-dark:hover {
     background-color: #444444; /* เทาเข้มกว่า */
 }
 
-.index-page .btn-secondary {
-    background-color: transparent;
-    border: 1px solid #333333; /* ขอบสีดำ */
-    color: #333333; /* สีดำ */
+.index-page .btn-danger {
+    background-color: #dc3545; /* สีแดง */
+    color: #FFFFFF; /* สีขาว */
+    border: none;
 }
 
-.index-page .btn-secondary:hover {
-    background-color: rgba(0, 0, 0, 0.1); /* สีดำอ่อนเมื่อ hover */
+.index-page .btn-danger:hover {
+    background-color: #c82333; /* สีแดงเข้ม */
 }
 
+/* เปลี่ยนสีของปุ่มโปรไฟล์ */
+.index-page .btn-profile {
+    background-color: #007bff; /* สีน้ำเงิน */
+    color: #ffffff; /* ขาว */
+    border: none;
+    padding: 0.5rem 0.5rem;
+    border-radius: 6px;
+}
+
+.index-page .btn-profile:hover {
+    background-color: #0056b3; /* สีน้ำเงินเข้ม */
+}
+
+/* Content styles */
 .index-page main {
     background-color: #FFFFFF; /* สีขาว */
     min-height: 80vh;
@@ -92,40 +106,6 @@ body {
     letter-spacing: 1px;
     text-transform: uppercase;
 }
-
-.index-page .search-bar {
-    display: flex;
-    gap: 0.5rem;
-    max-width: 350px;
-    width: 100%;
-}
-
-.index-page .search-bar input {
-    flex: 1;
-    padding: 0.75rem 1rem;
-    border: 1px solid #555555; /* เทาเข้ม */
-    border-radius: 6px;
-    font-size: 0.95rem;
-    background-color: #FFFFFF; /* สีขาว */
-    color: #333333; /* สีดำ */
-}
-
-.index-page .search-bar input::placeholder {
-    color: #555555; /* เทาเข้ม */
-    opacity: 0.7;
-}
-
-.index-page .search-bar button {
-    padding: 0.75rem 1rem;
-    background-color: #555555; /* เทาเข้ม */
-    color: #FFFFFF; /* สีขาว */
-    border: none;
-}
-
-.index-page .search-bar button:hover {
-    background-color: #444444; /* เทาเข้มกว่า */
-}
-
 
 /* Styles specific to signup.html */
 .signup-page body {
@@ -334,99 +314,56 @@ body {
     margin-top: 0.25rem;
 }
 
-/* Reset some default styles */
-.profile-page body, h1, p {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-}
-
 .profile-page body {
-    background-color: #f4f4f4; /* Light grey background */
-    color: #333; /* Dark text color */
-    padding: 20px;
+    background-color: #f8f9fa;
 }
 
-/* Container for profile form */
-.profile-page .profile-container {
-    max-width: 600px;
-    margin: 0 auto;
-    background-color: #fff; /* White background for form */
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Light shadow for depth */
+.profile-page .profile-page {
+    margin-top: 50px;
 }
 
-.profile-page h1 {
-    text-align: center;
-    color: #333; /* Dark text color */
-    margin-bottom: 20px;
+.profile-page .profile-card {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 30px;
 }
 
-/* Styling the form elements */
-.profile-page form p {
+.profile-page .profile-card img {
+    border-radius: 50%;
+}
+
+.profile-page .form-control {
+    border-radius: 5px;
+    box-shadow: none;
     margin-bottom: 15px;
 }
 
-.profile-page form p strong {
-    display: inline-block;
-    width: 120px;
-    font-weight: bold;
-    color: #555; /* Slightly lighter grey for labels */
-}
-
-.profile-page input[type="text"], input[type="email"], input[type="file"] {
-    width: calc(100% - 140px);
-    padding: 10px;
-    margin-left: 10px;
-    border-radius: 4px;
-    border: 1px solid #ccc; /* Light grey border */
-    background-color: #f9f9f9; /* Light grey input background */
-    color: #333; /* Dark text inside input fields */
-}
-
-.profile-page input[type="file"] {
-    width: calc(100% - 140px);
-    margin-left: 10px;
-}
-
-.profile-page button {
-    background-color: #333; /* Dark grey button */
+.profile-page .btn-update {
+    background-color: #007bff;
     color: white;
+    border-radius: 5px;
     padding: 10px 20px;
     border: none;
-    border-radius: 4px;
-    cursor: pointer;
     width: 100%;
-    font-size: 16px;
+}
+
+.profile-page .btn-update:hover {
+    background-color: #0056b3;
+}
+
+.profile-page .back-btn {
+    text-decoration: none;
+    color: #007bff;
     margin-top: 20px;
-}
-
-.profile-page button:hover {
-    background-color: #555; /* Lighter grey when hovering */
-}
-
-/* Back link styling */
-.profile-page a {
     display: block;
     text-align: center;
-    margin-top: 20px;
-    color: #333; /* Dark grey text color */
-    text-decoration: none;
 }
 
-.profile-page a:hover {
+.profile-page .back-btn:hover {
     text-decoration: underline;
 }
 
-/* Profile picture styling */
-.profile-page img {
-    margin-top: 10px;
-    border-radius: 50%; /* Circular profile picture */
-    display: inline-block;
-    border: 2px solid #ddd; /* Light grey border around image */
-    padding: 2px; /* Add small padding to image */
-}
 
 
 

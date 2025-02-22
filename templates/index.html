@@ -8,34 +8,42 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body class="index-page">
-    <header class="d-flex justify-content-between align-items-center">
-        <div class="logo">CodeTrek18</div>
+    <header class="d-flex justify-content-between align-items-center p-3">
+        <div class="logo text-white">CodeTrek18</div>
         <nav>
             <ul class="nav">
-                <li class="nav-item"><a class="nav-link" href="/python">PYTHON</a></li>
-                <li class="nav-item"><a class="nav-link" href="/matlab">MATLAB</a></li>
-                <li class="nav-item"><a class="nav-link" href="/sql">SQL</a></li>
-                <li class="nav-item"><a class="nav-link" href="/c">C</a></li>
+                <li class="nav-item"><a class="nav-link text-white" href="/python">PYTHON</a></li>
+                <li class="nav-item"><a class="nav-link text-white" href="/matlab">MATLAB</a></li>
+                <li class="nav-item"><a class="nav-link text-white" href="/sql">SQL</a></li>
+                <li class="nav-item"><a class="nav-link text-white" href="/c">C</a></li>
             </ul>
         </nav>
-        <div class="search-bar">
-            <input type="text" placeholder="Search our tutorials...">
-            <button>🔍</button>
-        </div>
         <div class="auth-buttons">
-            <a href="{{ url_for('signup') }}" class="btn btn-primary">Sign Up</a>
-            <a href="{{ url_for('login') }}" class="btn btn-primary">Login</a>
-            <a href="{{ url_for('profile') }}" class="btn btn-info">Profile</a>
+            <a href="{{ url_for('signup') }}" class="btn btn-dark">Sign Up</a>
+            <a href="{{ url_for('login') }}" class="btn btn-dark">Login</a>
+            <a href="{{ url_for('profile') }}" class="btn-profile">Profile</a>
+            <a href="{{ url_for('logout') }}" class="btn btn-danger">Logout</a>
         </div>
-        <a href="{{ url_for('choose_challenge') }}" class="btn btn-success">View All Question</a>
+        <div class="d-flex">
+            <a href="{{ url_for('choose_challenge') }}" class="btn btn-outline-light">View All Question</a>
+            <a href="{{ url_for('progress') }}" class="btn btn-outline-warning ml-2">Progress</a>
+        </div>
     </header>
 
-    <main class="container">
+    <main class="container text-center text-white py-5">
         <div class="welcome-text">
             <h1>Welcome to Your Journey</h1>
             <p class="tagline">Begin Your Coding Adventure</p>
         </div>
     </main>
+
+    <footer class="bg-dark text-white text-center py-3">
+        <p>&copy; 2025 CodeTrek18. All rights reserved.</p>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
 
