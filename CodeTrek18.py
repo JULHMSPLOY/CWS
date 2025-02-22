@@ -123,6 +123,11 @@ def profile():
             db.session.commit()  
             flash('Profile updated successfully!', 'success')
             return redirect(url_for('profile'))
+        
+        return render_template('profile.html', user=user)
+    else:
+        flash('Please log in to view or update your profile.', 'danger')
+        return redirect(url_for('login'))
 
 @app.route('/')
 def home():
