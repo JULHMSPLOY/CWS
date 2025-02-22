@@ -109,6 +109,11 @@ def profile():
             skills = request.form['skills']
             file = request.files['profile_picture']
 
+            user.first_name = first_name
+            user.last_name = last_name
+            user.email = email
+            user.skills = skills
+
 @app.route('/')
 def home():
     return render_template('index.html')
