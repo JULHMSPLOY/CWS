@@ -36,6 +36,9 @@ class User(db.Model):
 
     def __repr__(self):
         return f'<User {self.username}>'
+    
+def allowed_file(filename):
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in app.config['ALLOWED_EXTENSIONS']
 
 class AuthController:
     @staticmethod
