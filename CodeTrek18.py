@@ -30,6 +30,7 @@ class User(db.Model):
     password = db.Column(db.String(120), unique=True, nullable=False)
     first_name = db.Column(db.String(120), nullable=True)
     last_name = db.Column(db.String(120), nullable=True)
+    joined = db.Column(db.DateTime, default=datetime.utcnow)
 
     def __repr__(self):
         return f'<User {self.username}>'
