@@ -334,5 +334,99 @@ body {
     margin-top: 0.25rem;
 }
 
+/* Reset some default styles */
+.profile-page body, h1, p {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+.profile-page body {
+    background-color: #f4f4f4; /* Light grey background */
+    color: #333; /* Dark text color */
+    padding: 20px;
+}
+
+/* Container for profile form */
+.profile-page .profile-container {
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: #fff; /* White background for form */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Light shadow for depth */
+}
+
+.profile-page h1 {
+    text-align: center;
+    color: #333; /* Dark text color */
+    margin-bottom: 20px;
+}
+
+/* Styling the form elements */
+.profile-page form p {
+    margin-bottom: 15px;
+}
+
+.profile-page form p strong {
+    display: inline-block;
+    width: 120px;
+    font-weight: bold;
+    color: #555; /* Slightly lighter grey for labels */
+}
+
+.profile-page input[type="text"], input[type="email"], input[type="file"] {
+    width: calc(100% - 140px);
+    padding: 10px;
+    margin-left: 10px;
+    border-radius: 4px;
+    border: 1px solid #ccc; /* Light grey border */
+    background-color: #f9f9f9; /* Light grey input background */
+    color: #333; /* Dark text inside input fields */
+}
+
+.profile-page input[type="file"] {
+    width: calc(100% - 140px);
+    margin-left: 10px;
+}
+
+.profile-page button {
+    background-color: #333; /* Dark grey button */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 16px;
+    margin-top: 20px;
+}
+
+.profile-page button:hover {
+    background-color: #555; /* Lighter grey when hovering */
+}
+
+/* Back link styling */
+.profile-page a {
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+    color: #333; /* Dark grey text color */
+    text-decoration: none;
+}
+
+.profile-page a:hover {
+    text-decoration: underline;
+}
+
+/* Profile picture styling */
+.profile-page img {
+    margin-top: 10px;
+    border-radius: 50%; /* Circular profile picture */
+    display: inline-block;
+    border: 2px solid #ddd; /* Light grey border around image */
+    padding: 2px; /* Add small padding to image */
+}
+
 
 

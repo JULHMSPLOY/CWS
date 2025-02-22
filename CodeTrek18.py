@@ -14,6 +14,7 @@ from werkzeug.utils import secure_filename
 import subprocess
 import sqlite3
 import os
+import bcrypt
 
 app = Flask(__name__)  
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
@@ -28,7 +29,7 @@ class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(120), unique=True, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
-    password = db.Column(db.String(120), unique=True, nullable=False)
+    password = db.Column(db.String(120), nullable=False)
     first_name = db.Column(db.String(120), nullable=True)
     last_name = db.Column(db.String(120), nullable=True)
     joined = db.Column(db.DateTime, default=datetime.utcnow)
@@ -44,22 +45,26 @@ def allowed_file(filename):
 class AuthController:
     @staticmethod
     def register(username, email, password, confirm_password):
-        if password != confirm_password:
-            return "Passwords do not match."
+        try:
+            if password != confirm_password:
+                return "Passwords do not match."
 
-        if len(password) < 10:
-            return "Password must be at least 10 characters long."
+            if len(password) < 10:
+                return "Password must be at least 10 characters long."
 
-        user_exists = User.query.filter((User.username == username) or (User.email == email)).first()
-        if user_exists:
-            return "Username or Email already exists!"
+            user_exists = User.query.filter(db.or_(User.username == username, User.email == email)).first()
+            if user_exists:
+                return "Username or Email already exists!"
 
-        hashed_password = generate_password_hash(password, method='sha256')
-        new_user = User(username=username, email=email, password=hashed_password)
-
-        db.session.add(new_user)
-        db.session.commit()
-        return None
+            hashed_password = generate_password_hash(password, method='pbkdf2:sha256')
+            new_user = User(username=username, email=email, password=hashed_password)
+        
+            db.session.add(new_user)
+            db.session.commit()
+            return None
+        except Exception as e:
+            db.session.rollback()
+            return f"Database error: {str(e)}"
 
     @staticmethod
     def check_password(hashed_password, password):
@@ -67,24 +72,35 @@ class AuthController:
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
+    if 'user_id' in session:
+        return redirect(url_for('home'))
+    
+        print("Method:", request.method)
+
     if request.method == 'POST':
         error = AuthController.register(
-            request.form['username'],
-            request.form['email'],
-            request.form['password'],
-            request.form['confirm_password']
+            username =request.form['username'],
+            email = request.form['email'],
+            password = request.form['password'],
+            confirm_password = request.form['confirm_password']
         )
+
+        print("Error:", error)
         
         if error:
             flash(error, 'danger')
+            return render_template('signup.html')
         else:
-            flash('Account created successfully!', 'success')
+            flash('Account created successfully! Please login.', 'success')
             return redirect(url_for('login'))
 
     return render_template('signup.html')
 
 @app.route('/login', methods = ['GET', 'POST'])
 def login():
+    if 'user_id' in session:
+        return redirect(url_for('home'))
+    
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
@@ -141,6 +157,7 @@ def choose_challenge():
         'SQL': '/sql',
         'C': '/c'
     }
+
     return render_template('choose_challenge.html', challenges=challenges)
 
 class PythonChallenges:
@@ -450,7 +467,12 @@ def c_practice():
 
     return render_template('c.html', challenge=challenge, result=result, feedback=feedback, next_challenge=next_challenge, test_status=test_status, total_challenges=len(challenges), current_hint_index=request.form.get('current_hint_index', 0) if request.method == 'POST' else 0)
 
-if __name__ == '__main__':
+def init_db():
     with app.app_context():
+        db.drop_all()
         db.create_all()
+        print("Database initialized successfully")
+
+if __name__ == '__main__':
+    init_db()
     app.run(debug=True)
