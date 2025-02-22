@@ -41,10 +41,35 @@ class User(db.Model):
     skills = db.Column(db.String(200), nullable=True)
     profile_picture = db.Column(db.String(120), nullable=True)
 ```
-- ในฟังก์ชัน signup() จะมีการตรวจสอบว่า username กับ email ซ้ำกันหรือไม่ โดยใช้ generate_password_hash จาก werkzeug.security ในการเข้ารหัสผ่าน
+- ในฟังก์ชัน register() จะมีการตรวจสอบว่า username กับ email ซ้ำกันหรือไม่ โดยใช้ generate_password_hash จาก werkzeug ในการเข้ารหัสผ่าน
 ```sh
 hashed_password = generate_password_hash(password, method='pbkdf2:sha256')
 new_user = User(username=username, email=email, password=hashed_password)
+```
+- ในฟังก์ชัน register() จะตรวจสอบรหัสผ่านที่กรอกเข้ามาว่าตรงกับรหัสผ่านที่เก็บในฐานข้อมูลหรือไม่ โดยใช้ฟังก์ชัน check_password() ที่ใช้ werkzeug ในการตรวจสอบรหัสผ่าน
+```sh
+def check_password(hashed_password, password):
+    return check_password_hash(hashed_password, password)
+```
+- ในฟังก์ชัน profile() ผู้ใช้สามารถอัพโหลดรูปภาพโปรไฟล์ได้
+```sh
+if file and allowed_file(file.filename):
+    filename = secure_filename(file.filename)
+    file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+    user.profile_picture = filename
+```
+- ทดสอบโค้ดโดยการใช้ subprocess เพื่อเรียกใช้งานคำสั่ง Python และ MATLAB สำหรับทดสอบคำตอบในคำถามการเขียนโค้ด
+```sh
+process = subprocess.run(['python3', '-c', user_code], input=input_data, text=True, capture_output=True, timeout=5)
+    result = process.stdout.strip()
+```
+```sh
+def check_password(hashed_password, password):
+    return check_password_hash(hashed_password, password)
+```
+- ใช้ session เพื่อจัดการการเข้าสู่ระบบของผู้ใช้ โดยตัวแปร session จะเก็บข้อมูลที่สำคัญ เช่น การตรวจสอบว่า user เป็นคนที่ล็อกอินเข้ามาหรือไม่
+```sh
+session['user_id'] = user.id
 ```
 # License
 This project is licensed under the MIT License - see the [LICENSE](LICENSE.md) file for details.
