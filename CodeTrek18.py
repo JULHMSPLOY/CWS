@@ -152,6 +152,13 @@ def profile():
         return redirect(url_for('login'))
 
 @app.route('/progress')
+def results():
+     progress_data = {
+        'Python': random.randint(50, 100),
+        'MATLAB': random.randint(50, 100),
+        'SQL': random.randint(50, 100),
+        'C': random.randint(50, 100),
+    }
 
 @app.route('/')
 def home():
