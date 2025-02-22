@@ -99,6 +99,9 @@ def login():
     return render_template('login.html')
 
 @app.route('/profile', methods=['GET', 'POST'])
+def profile():
+    if 'user_id' in session:
+        user = User.query.get(session['user_id'])
 
 @app.route('/')
 def home():
