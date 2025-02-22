@@ -250,7 +250,7 @@ def python_practice():
             solution = challenge['valid_solutions'][0]  # Choose which solution to show
         else:
             feedback = PythonChallenges.validate_solution(user_code, challenge)
-            
+
         if "Correct!" in feedback:
             next_challenge = challenge_id + 1 if challenge_id < len(challenges) else None
 
@@ -310,14 +310,22 @@ def matlab_practice():
     feedback = None
     next_challenge = None
     test_status = None
+    solution = None
 
     if request.method == 'POST':
         user_code = request.form['code']
-        feedback = MatlabChallenges.validate_solution(user_code, challenge)
+
+        action = request.form.get('action')
+
+        if action == "show_solution":
+            solution = challenge['valid_solutions'][0]  # Choose which solution to show
+        else:
+            feedback = MatlabChallenges.validate_solution(user_code, challenge)
+
         if "Correct!" in feedback:
             next_challenge = challenge_id + 1 if challenge_id < len(challenges) else None
 
-    return render_template('matlab.html', challenge=challenge, result=result, feedback=feedback, next_challenge=next_challenge, test_status=test_status, total_challenges=len(challenges), current_hint_index=request.form.get('current_hint_index', 0) if request.method == 'POST' else 0)
+    return render_template('matlab.html', challenge=challenge, result=result, feedback=feedback, next_challenge=next_challenge, test_status=test_status, total_challenges=len(challenges), solution=solution, current_hint_index=request.form.get('current_hint_index', 0) if request.method == 'POST' else 0)
 
 class SQLChallenges:
     @staticmethod
