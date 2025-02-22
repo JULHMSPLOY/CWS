@@ -493,17 +493,24 @@ def c_practice():
     feedback = None
     next_challenge = None
     test_status = None
-    
+    solution = None
+
     if request.method == 'POST':
         user_code = request.form['code']
-        feedback = CChallenges.validate_solution(user_code, challenge)
+
+        action = request.form.get('action')
+        if action == "show_solution":
+            solution = challenge['valid_solutions'][0] 
+        else:
+            feedback = CChallenges.validate_solution(user_code, challenge)
+        
         if "Correct!" in feedback:
             next_challenge = challenge_id + 1 if challenge_id < len(challenges) else None
             test_status = 'Passed'  
         else:
             test_status = 'Failed'
 
-    return render_template('c.html', challenge=challenge, result=result, feedback=feedback, next_challenge=next_challenge, test_status=test_status, total_challenges=len(challenges), current_hint_index=request.form.get('current_hint_index', 0) if request.method == 'POST' else 0)
+    return render_template('c.html', challenge=challenge, result=result, feedback=feedback, next_challenge=next_challenge, test_status=test_status, total_challenges=len(challenges), solution=solution, current_hint_index=request.form.get('current_hint_index', 0) if request.method == 'POST' else 0)
 
 def init_db():
     with app.app_context():
