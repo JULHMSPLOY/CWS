@@ -14,7 +14,6 @@ from werkzeug.utils import secure_filename
 import subprocess
 import sqlite3
 import os
-import random
 
 app = Flask(__name__)  
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
@@ -150,17 +149,15 @@ def profile():
     else:
         flash('Please log in to view or update your profile.', 'danger')
         return redirect(url_for('login'))
-
+    
 @app.route('/progress')
-def results():
-     progress_data = {
-        'Python': random.randint(50, 100),
-        'MATLAB': random.randint(50, 100),
-        'SQL': random.randint(50, 100),
-        'C': random.randint(50, 100),
-     }
-     
-     return render_template('results.html', progress_data=progress_data)
+def progress():
+    if 'user_id' not in session:
+        flash('Please log in to view your progress.', 'danger')
+        return redirect(url_for('login'))
+    user = User.query.get(session['user_id'])
+
+    return render_template('progress.html', user=user)
 
 @app.route('/')
 def home():
@@ -242,14 +239,22 @@ def python_practice():
     feedback = None
     next_challenge = None
     test_status = None
+    solution = None
 
     if request.method == 'POST':
         user_code = request.form['code']
-        feedback = PythonChallenges.validate_solution(user_code, challenge)
+
+        action = request.form.get('action')
+
+        if action == "show_solution":
+            solution = challenge['valid_solutions'][0]  # Choose which solution to show
+        else:
+            feedback = PythonChallenges.validate_solution(user_code, challenge)
+            
         if "Correct!" in feedback:
             next_challenge = challenge_id + 1 if challenge_id < len(challenges) else None
 
-    return render_template('python.html', challenge=challenge, result=result, feedback=feedback, next_challenge=next_challenge, test_status=test_status, total_challenges=len(challenges), current_hint_index=request.form.get('current_hint_index', 0) if request.method == 'POST' else 0)
+    return render_template('python.html', challenge=challenge, result=result, feedback=feedback, next_challenge=next_challenge, test_status=test_status, total_challenges=len(challenges),  solution=solution, current_hint_index=request.form.get('current_hint_index', 0) if request.method == 'POST' else 0)
 
 class MatlabChallenges:
     @staticmethod
