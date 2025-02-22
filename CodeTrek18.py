@@ -14,6 +14,7 @@ from werkzeug.utils import secure_filename
 import subprocess
 import sqlite3
 import os
+import random
 
 app = Flask(__name__)  
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
@@ -117,7 +118,7 @@ def login():
 @app.route('/logout')
 def logout():
     session.pop('user_id', None)
-    flash('You have been logged out.', 'info')
+    flash('You have been logged out', 'success')
     return redirect(url_for('home'))
 
 @app.route('/profile', methods=['GET', 'POST'])
