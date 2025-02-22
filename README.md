@@ -6,16 +6,22 @@ CodeTrek18 เป็นเว็บไซต์ฝึกเขียนโปร
 # Libraries
 โปรเจกต์นี้มีการใช้ Libraries จำนวน 5 ตัว ดังต่อไปนี้
 - Flask สำหรับการพัฒนาเว็บแอปพลิเคชัน และการจัดการในการยืนยันตัวตน (Authentication) และข้อมูลของผู้ใช้ (Profile) ด้วย
+- datetime สำหรับการจัดการกับวันที่และเวลา
 - SQLAIchemy สำหรับการจัดการฐานข้อมูล
 - Bootstrap เป็น CSS Framework สำหรับการออกแบบหน้าตาเว็บแอปพลิเคชัน
 - Werkzenug สำหรับการเข้ารหัสผ่าน
-- subprocess สำหรับการรันโปรแกรมของผู้ใช้และตรวจสอบผลลัพธ์
-- jinja2 สำหรับแสดงผล HTML templates
+- subprocess สำหรับการเรียกใช้งานคำสั่งจากภายนอก
+- sqlite3 สำหรับการเชื่อมต่อและจัดการฐานข้อมูล SQLite โดยตรง
+- os สำหรับการจัดการกับระบบไฟล์
 # How to use  
 - ติดตั้ง Libraries โดยใช้คำสั่งด้านล่างนี้ใน terminal หรือ command prompt
-
 ```sh 
 pip install flask flask_sqlalchemy flask_bootstrap werkzeug bcrypt
+```
+- สร้างเว็บแอปพลิเคชัน Flask
+```sh 
+from flask import Flask
+app = Flask(__name__)
 ```
 - ตั้งค่า Flask app โดยใช้ไฟล์ app.config
 ```sh 
@@ -41,17 +47,17 @@ class User(db.Model):
     skills = db.Column(db.String(200), nullable=True)
     profile_picture = db.Column(db.String(120), nullable=True)
 ```
-- ในฟังก์ชัน register() จะมีการตรวจสอบว่า username กับ email ซ้ำกันหรือไม่ โดยใช้ generate_password_hash จาก werkzeug ในการเข้ารหัสผ่าน
+- ในฟังก์ชัน register() จะมีการตรวจสอบว่า username กับ email ซ้ำกันหรือไม่ โดยใช้ generate_password_hash จาก werkzeug ในการเข้ารหัสผ่านก่อนที่จะเก็บในฐานข้อมูล
 ```sh
 hashed_password = generate_password_hash(password, method='pbkdf2:sha256')
 new_user = User(username=username, email=email, password=hashed_password)
 ```
-- ในฟังก์ชัน register() จะตรวจสอบรหัสผ่านที่กรอกเข้ามาว่าตรงกับรหัสผ่านที่เก็บในฐานข้อมูลหรือไม่ โดยใช้ฟังก์ชัน check_password() ที่ใช้ werkzeug ในการตรวจสอบรหัสผ่าน
+- ในฟังก์ชัน register() จะตรวจสอบรหัสผ่านที่กรอกเข้ามาว่าตรงกับรหัสผ่านที่เก็บในฐานข้อมูลหรือไม่ โดยใช้ฟังก์ชัน check_password() ที่ใช้ werkzeug ในการตรวจสอบรหัสผ่านที่ป้อนเข้ามาว่าตรงกับรหัสผ่านที่เก็บไว้ในฐานข้อมูลหรือไม่
 ```sh
 def check_password(hashed_password, password):
     return check_password_hash(hashed_password, password)
 ```
-- ในฟังก์ชัน profile() ผู้ใช้สามารถอัพโหลดรูปภาพโปรไฟล์ได้
+- ในฟังก์ชัน profile() ผู้ใช้สามารถอัพโหลดรูปภาพโปรไฟล์ได้ และใช้ secure_filename จาก werkzeug สำหรับทำให้ชื่อไฟล์ที่อัพโหลดมีความปลอดภัยและไม่ทำให้เกิดปัญหากับระบบไฟล์
 ```sh
 if file and allowed_file(file.filename):
     filename = secure_filename(file.filename)
@@ -63,13 +69,17 @@ if file and allowed_file(file.filename):
 process = subprocess.run(['python3', '-c', user_code], input=input_data, text=True, capture_output=True, timeout=5)
     result = process.stdout.strip()
 ```
-```sh
-def check_password(hashed_password, password):
-    return check_password_hash(hashed_password, password)
-```
 - ใช้ session เพื่อจัดการการเข้าสู่ระบบของผู้ใช้ โดยตัวแปร session จะเก็บข้อมูลที่สำคัญ เช่น การตรวจสอบว่า user เป็นคนที่ล็อกอินเข้ามาหรือไม่
 ```sh
 session['user_id'] = user.id
+```
+- ใช้ Bootstrap ออกแบบ UI ในแอปพลิเคชันด้วยการใช้ Bootstrap framework เพื่อทำให้หน้าเว็บดูดีและตอบสนองได้
+```sh
+def home():
+    return render_template('index.html')
+```
+```sh
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 ```
 # License
 This project is licensed under the MIT License - see the [LICENSE](LICENSE.md) file for details.
