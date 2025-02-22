@@ -151,6 +151,8 @@ def profile():
         flash('Please log in to view or update your profile.', 'danger')
         return redirect(url_for('login'))
 
+@app.route('/progress')
+
 @app.route('/')
 def home():
     return render_template('index.html')
