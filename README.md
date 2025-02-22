@@ -29,5 +29,18 @@ app.config['ALLOWED_EXTENSIONS'] ={'png', 'jpg', 'jpeg', 'gif'}
 ```sh 
 db = SQLAlchemy(app)
 ```
+- สามารถสร้างและจัดการโมเดล User ที่เก็บข้อมูลผู้ใช้ได้ เช่น ชื่อ, อีเมล, รหัสผ่าน, และข้อมูลโปรไฟล์อื่นๆ
+```sh 
+class User(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(120), unique=True, nullable=False)
+    email = db.Column(db.String(120), unique=True, nullable=False)
+    password = db.Column(db.String(120), nullable=False)
+    first_name = db.Column(db.String(120), nullable=True)
+    last_name = db.Column(db.String(120), nullable=True)
+    joined = db.Column(db.DateTime, default=datetime.utcnow)
+    skills = db.Column(db.String(200), nullable=True)
+    profile_picture = db.Column(db.String(120), nullable=True)
+```
 # License
 This project is licensed under the MIT License - see the [LICENSE](LICENSE.md) file for details.
