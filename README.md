@@ -8,7 +8,8 @@ CodeTrek18 เป็นเว็บไซต์ฝึกเขียนโปร
 - Werkzenug สำหรับการเข้ารหัสผ่าน
 - bcrypt สำหรับการแปลงข้อมูล (Hashing) รหัสผ่าน
 - subprocess สำหรับการรันโปรแกรมของผู้ใช้และตรวจสอบผลลัพธ์
-- jinja2 สำหรับแสดงผล HTML templates 
+- jinja2 สำหรับแสดงผล HTML templates
+  
 โดยสามารถติดตั้ง Libraries ทั้งหมดนี้ได้ โดยใช้คำสั่งดังด้านล่างใน terminal หรือ command prompt
 
 ```sh 
