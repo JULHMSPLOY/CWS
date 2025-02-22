@@ -32,6 +32,7 @@ class User(db.Model):
     last_name = db.Column(db.String(120), nullable=True)
     joined = db.Column(db.DateTime, default=datetime.utcnow)
     skills = db.Column(db.String(200), nullable=True)
+    profile_picture = db.Column(db.String(120), nullable=True)
 
     def __repr__(self):
         return f'<User {self.username}>'
