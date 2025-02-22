@@ -53,7 +53,7 @@ pip install flask flask_sqlalchemy flask_bootstrap werkzeug bcrypt
 
 # Usage 
 - สร้างเว็บแอปพลิเคชัน Flask
-- 
+
 ```sh 
 from flask import Flask
 app = Flask(__name__)
