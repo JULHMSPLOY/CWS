@@ -10,6 +10,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_bootstrap import Bootstrap
 from werkzeug.security import generate_password_hash
 from werkzeug.security import check_password_hash
+from werkzeug.utils import secure_filename
 import subprocess
 import sqlite3
 import os
@@ -113,6 +114,11 @@ def profile():
             user.last_name = last_name
             user.email = email
             user.skills = skills
+
+            if file and allowed_file(file.filename):
+                filename = secure_filename(file.filename)
+                file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+                user.profile_picture = filename
 
 @app.route('/')
 def home():
