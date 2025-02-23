@@ -34,6 +34,8 @@ class User(db.Model):
     joined = db.Column(db.DateTime, default=datetime.utcnow)
     skills = db.Column(db.String(200), nullable=True)
     profile_picture = db.Column(db.String(120), nullable=True)
+    progress = db.relationship('UserProgress', backref='user', lazy=True)
+    attempts = db.relationship('UserAttempt', backref='user', lazy=True)
 
     def __repr__(self):
         return f'<User {self.username}>'
