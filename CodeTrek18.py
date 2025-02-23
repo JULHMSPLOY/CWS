@@ -79,6 +79,7 @@ class User(db.Model):
     profile_picture = db.Column(db.String(120), nullable=True)
     progress = db.relationship('UserProgress', backref='user', lazy=True)
     attempts = db.relationship('UserAttempt', backref='user', lazy=True)
+    settings = db.relationship('UserSettings', backref='user', uselist=False)
 
     def __repr__(self):
         return f'<User {self.username}>'
