@@ -187,6 +187,14 @@ def update_user_progress(user_id, challenge_type, challenge_id, succeeded):
         challenge_id=challenge_id
     ).first()
 
+    if not progress:
+        progress = UserProgress(
+            user_id=user_id,
+            challenge_type=challenge_type,
+            challenge_id=challenge_id
+        )
+        db.session.add(progress)
+
 @app.route('/choose_challenge', methods=['GET'])
 def choose_challenge():
     challenges = {
