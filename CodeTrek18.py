@@ -949,6 +949,13 @@ def progress():
         .order_by(UserAttempt.attempt_time.desc())\
         .limit(10)\
         .all()
+    
+    stats = {
+        'total_completed': UserProgress.query.filter_by(user_id=user.id, completed=True).count(),
+        'total_attempts': UserAttempt.query.filter_by(user_id=user.id).count(),
+        'success_rate': UserAttempt.query.filter_by(user_id=user.id, succeeded=True).count() / \
+            UserAttempt.query.filter_by(user_id=user.id).count() * 100 if UserAttempt.query.filter_by(user_id=user.id).count() > 0 else 0
+    }
 
 def init_db():
     with app.app_context():
