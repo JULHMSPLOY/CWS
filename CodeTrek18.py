@@ -142,6 +142,11 @@ def signup():
     return render_template('signup.html')
 
 @app.route('/settings', methods=['GET', 'POST'])
+@login_required
+def user_settings():
+    user = User.query.get(session['user_id'])
+    if not user.settings:
+        settings = UserSettings(user_id=user.id)
 
 def login_required(f):
     @wraps(f)
