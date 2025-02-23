@@ -24,22 +24,6 @@ db = SQLAlchemy(app)
 
 Bootstrap(app)
 
-class User(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(120), unique=True, nullable=False)
-    email = db.Column(db.String(120), unique=True, nullable=False)
-    password = db.Column(db.String(120), nullable=False)
-    first_name = db.Column(db.String(120), nullable=True)
-    last_name = db.Column(db.String(120), nullable=True)
-    joined = db.Column(db.DateTime, default=datetime.utcnow)
-    skills = db.Column(db.String(200), nullable=True)
-    profile_picture = db.Column(db.String(120), nullable=True)
-    progress = db.relationship('UserProgress', backref='user', lazy=True)
-    attempts = db.relationship('UserAttempt', backref='user', lazy=True)
-
-    def __repr__(self):
-        return f'<User {self.username}>'
-    
 class UserProgress(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
@@ -63,6 +47,22 @@ class UserAttempt(db.Model):
 
     def __repr__(self):
         return f'<Attempt {self.user_id}-{self.challenge_type}-{self.challenge_id}>'
+
+class User(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(120), unique=True, nullable=False)
+    email = db.Column(db.String(120), unique=True, nullable=False)
+    password = db.Column(db.String(120), nullable=False)
+    first_name = db.Column(db.String(120), nullable=True)
+    last_name = db.Column(db.String(120), nullable=True)
+    joined = db.Column(db.DateTime, default=datetime.utcnow)
+    skills = db.Column(db.String(200), nullable=True)
+    profile_picture = db.Column(db.String(120), nullable=True)
+    progress = db.relationship('UserProgress', backref='user', lazy=True)
+    attempts = db.relationship('UserAttempt', backref='user', lazy=True)
+
+    def __repr__(self):
+        return f'<User {self.username}>'
     
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in app.config['ALLOWED_EXTENSIONS']
@@ -179,6 +179,8 @@ def profile():
 @app.route('/')
 def home():
     return render_template('index.html')
+
+def update_user_progress(user_id, challenge_type, challenge_id, succeeded):
 
 @app.route('/choose_challenge', methods=['GET'])
 def choose_challenge():
