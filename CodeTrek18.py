@@ -51,6 +51,15 @@ class UserAttempt(db.Model):
     def __repr__(self):
         return f'<Attempt {self.user_id}-{self.challenge_type}-{self.challenge_id}>'
 
+class LoginAttempt(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(120), nullable=False)
+    ip_address = db.Column(db.String(45), nullable=False)
+    attempt_time = db.Column(db.DateTime, default=datetime.utcnow)
+    successful = db.Column(db.Boolean, default=False)
+
+class UserSettings(db.Model):
+    
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(120), unique=True, nullable=False)
@@ -132,13 +141,6 @@ def login_required(f):
             return redirect(url_for('login'))
         return f(*args, **kwargs)
     return decorated_function
-
-class LoginAttempt(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(120), nullable=False)
-    ip_address = db.Column(db.String(45), nullable=False)
-    attempt_time = db.Column(db.DateTime, default=datetime.utcnow)
-    successful = db.Column(db.Boolean, default=False)
 
 def check_login_attempts(username, ip_address):
     cutoff_time = datetime.utcnow() - timedelta(minutes=15)
