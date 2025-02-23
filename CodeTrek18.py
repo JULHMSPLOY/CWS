@@ -134,6 +134,11 @@ def login_required(f):
     return decorated_function
 
 class LoginAttempt(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(120), nullable=False)
+    ip_address = db.Column(db.String(45), nullable=False)
+    attempt_time = db.Column(db.DateTime, default=datetime.utcnow)
+    successful = db.Column(db.Boolean, default=False)
 
 @app.route('/login', methods = ['GET', 'POST'])
 def login():
