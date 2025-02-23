@@ -4,20 +4,10 @@
     <title>Progress Dashboard</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Link to External Style.css -->
+    <link href="style.css" rel="stylesheet">
     <!-- Chart.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
-    <style>
-        .achievement-card {
-            transition: transform 0.2s;
-        }
-        .achievement-card:hover {
-            transform: translateY(-5px);
-        }
-        .badge-icon {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-        }
-    </style>
 </head>
 <body>
     <div class="container py-5">
@@ -30,7 +20,7 @@
                 <div class="card text-center h-100">
                     <div class="card-body">
                         <h5 class="card-title">Completed Challenges</h5>
-                        <p class="display-4">15/28</p> <!-- Updated completed challenges -->
+                        <p class="display-4">0/32</p> <!-- Updated completed challenges -->
                     </div>
                 </div>
             </div>
@@ -38,7 +28,7 @@
                 <div class="card text-center h-100">
                     <div class="card-body">
                         <h5 class="card-title">Total Time</h5>
-                        <p class="display-4">675</p> <!-- Updated total time -->
+                        <p class="display-4">0</p> <!-- Updated total time -->
                         <p class="text-muted">minutes</p>
                     </div>
                 </div>
@@ -47,7 +37,7 @@
                 <div class="card text-center h-100">
                     <div class="card-body">
                         <h5 class="card-title">Avg Time/Challenge</h5>
-                        <p class="display-4">45</p> <!-- Updated avg time per challenge -->
+                        <p class="display-4">0</p> <!-- Updated avg time per challenge -->
                         <p class="text-muted">minutes</p>
                     </div>
                 </div>
@@ -56,7 +46,7 @@
                 <div class="card text-center h-100">
                     <div class="card-body">
                         <h5 class="card-title">Success Rate</h5>
-                        <p class="display-4">85%</p> <!-- Updated success rate -->
+                        <p class="display-4">0%</p> <!-- Updated success rate -->
                     </div>
                 </div>
             </div>
@@ -86,7 +76,7 @@
                         <h5 class="card-title">Python Master</h5>
                         <p class="card-text">Complete all Python challenges</p>
                         <div class="progress">
-                            <div class="progress-bar bg-warning" role="progressbar" style="width: 80%;" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100">80%</div> <!-- Updated progress for Python -->
+                            <div class="progress-bar bg-warning" role="progressbar" style="width: 1%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div> <!-- Updated progress for Python -->
                         </div>
                     </div>
                 </div>
@@ -98,7 +88,7 @@
                         <h5 class="card-title">SQL Expert</h5>
                         <p class="card-text">Complete all SQL challenges</p>
                         <div class="progress">
-                            <div class="progress-bar bg-primary" role="progressbar" style="width: 60%;" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100">60%</div> <!-- Updated progress for SQL -->
+                            <div class="progress-bar bg-primary" role="progressbar" style="width: 1%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div> <!-- Updated progress for SQL -->
                         </div>
                     </div>
                 </div>
@@ -110,7 +100,7 @@
                         <h5 class="card-title">C Champion</h5>
                         <p class="card-text">Complete all C challenges</p>
                         <div class="progress">
-                            <div class="progress-bar bg-purple" role="progressbar" style="width: 40%;" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100">40%</div> <!-- Updated progress for C -->
+                            <div class="progress-bar bg-purple" role="progressbar" style="width: 1%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div> <!-- Updated progress for C -->
                         </div>
                     </div>
                 </div>
@@ -122,7 +112,7 @@
                         <h5 class="card-title">MATLAB Maven</h5>
                         <p class="card-text">Complete all MATLAB challenges</p>
                         <div class="progress">
-                            <div class="progress-bar bg-success" role="progressbar" style="width: 20%;" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">20%</div> <!-- Updated progress for MATLAB -->
+                            <div class="progress-bar bg-success" role="progressbar" style="width: 1%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div> <!-- Updated progress for MATLAB -->
                         </div>
                     </div>
                 </div>
@@ -136,17 +126,17 @@
         new Chart(ctx, {
             type: 'line',
             data: {
-                labels: ['Feb 17', 'Feb 18', 'Feb 19', 'Feb 20', 'Feb 21', 'Feb 22', 'Feb 23'],
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
                 datasets: [{
                     label: 'Completed Challenges',
-                    data: [0, 1, 2, 3, 4, 5, 6], // Updated data for completed challenges
+                    data: [0], // Updated data for completed challenges
                     borderColor: 'rgb(75, 192, 192)',
-                    tension: 0.1
+                    tension: 0
                 }, {
                     label: 'Total Time (mins)',
-                    data: [0, 30, 60, 90, 120, 150, 180], // Updated data for total time spent
+                    data: [0], // Updated data for total time spent
                     borderColor: 'rgb(255, 99, 132)',
-                    tension: 0.1
+                    tension: 0
                 }]
             },
             options: {
@@ -161,5 +151,3 @@
     </script>
 </body>
 </html>
-
-

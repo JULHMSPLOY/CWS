@@ -7,7 +7,7 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='style1.css') }}">
 </head>
-<body>
+<body class="python-page">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
             <a class="navbar-brand" href="{{ url_for('home') }}">Python Learning</a>
@@ -112,7 +112,7 @@
                     <div class="card-header">
                         <h5 class="m-0">Solution</h5>
                     </div>
-                    <div class="card-body">
+                    <div> class="card-body">
                         <pre class="bg-light p-3 rounded">{{ solution }}</pre>
                     </div>
                 </div>

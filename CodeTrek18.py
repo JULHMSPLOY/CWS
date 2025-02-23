@@ -5,15 +5,12 @@ from flask import redirect
 from flask import url_for
 from flask import session
 from flask import flash
-from flask import abort
 from datetime import datetime
-from datetime import timedelta
 from flask_sqlalchemy import SQLAlchemy
 from flask_bootstrap import Bootstrap
 from werkzeug.security import generate_password_hash
 from werkzeug.security import check_password_hash
 from werkzeug.utils import secure_filename
-from functools import wraps
 import subprocess
 import sqlite3
 import os
@@ -27,46 +24,6 @@ db = SQLAlchemy(app)
 
 Bootstrap(app)
 
-class UserProgress(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
-    challenge_type = db.Column(db.String(20), nullable=False)  
-    challenge_id = db.Column(db.Integer, nullable=False)
-    completed = db.Column(db.Boolean, default=False)
-    attempts = db.Column(db.Integer, default=0)
-    completed_at = db.Column(db.DateTime, nullable=True)
-
-    def __repr__(self):
-        return f'<Progress {self.user_id}-{self.challenge_type}-{self.challenge_id}>'
-
-class UserAttempt(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
-    challenge_type = db.Column(db.String(20), nullable=False)
-    challenge_id = db.Column(db.Integer, nullable=False)
-    code_submitted = db.Column(db.Text, nullable=False)
-    succeeded = db.Column(db.Boolean, default=False)
-    attempt_time = db.Column(db.DateTime, default=datetime.utcnow)
-
-    def __repr__(self):
-        return f'<Attempt {self.user_id}-{self.challenge_type}-{self.challenge_id}>'
-
-class LoginAttempt(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(120), nullable=False)
-    ip_address = db.Column(db.String(45), nullable=False)
-    attempt_time = db.Column(db.DateTime, default=datetime.utcnow)
-    successful = db.Column(db.Boolean, default=False)
-
-class UserSettings(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
-    preferred_language = db.Column(db.String(20), default='python')
-    email_notifications = db.Column(db.Boolean, default=True)
-    dark_mode = db.Column(db.Boolean, default=False)
-    created_at = db.Column(db.DateTime, default=datetime.utcnow)
-    updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
-
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(120), unique=True, nullable=False)
@@ -77,9 +34,6 @@ class User(db.Model):
     joined = db.Column(db.DateTime, default=datetime.utcnow)
     skills = db.Column(db.String(200), nullable=True)
     profile_picture = db.Column(db.String(120), nullable=True)
-    progress = db.relationship('UserProgress', backref='user', lazy=True)
-    attempts = db.relationship('UserAttempt', backref='user', lazy=True)
-    settings = db.relationship('UserSettings', backref='user', uselist=False)
 
     def __repr__(self):
         return f'<User {self.username}>'
@@ -141,65 +95,6 @@ def signup():
 
     return render_template('signup.html')
 
-@app.route('/settings', methods=['GET', 'POST'])
-@login_required
-def user_settings():
-    user = User.query.get(session['user_id'])
-    if not user.settings:
-        settings = UserSettings(user_id=user.id)
-
-        db.session.add(settings)
-        db.session.commit()
-
-    if request.method == 'POST':
-        user.settings.preferred_language = request.form.get('preferred_language', 'python')
-        user.settings.email_notifications = 'email_notifications' in request.form
-        user.settings.dark_mode = 'dark_mode' in request.form
-        db.session.commit()
-        flash('Settings updated successfully!', 'success')
-
-        return redirect(url_for('user_settings'))
-    
-    return render_template('settings.html', user=user)
-
-@app.route('/reset_password', methods=['GET', 'POST'])
-def reset_password():
-    if request.method == 'POST':
-        email = request.form['email']
-        user = User.query.filter_by(email=email).first()
-
-        if user:
-            reset_token = generate_password_hash(str(datetime.utcnow()))
-            user.reset_token = reset_token
-            user.reset_token_expiry = datetime.utcnow() + timedelta(hours=24)
-
-            db.session.commit()
-
-            flash('Password reset instructions have been sent to your email.', 'success')
-            return redirect(url_for('login'))
-        
-        flash('Email address not found.', 'danger')
-    return render_template('reset_password.html')
-
-def login_required(f):
-    @wraps(f)
-    def decorated_function(*args, **kwargs):
-        if 'user_id' not in session:
-            flash('Please login to access this page', 'danger')
-            return redirect(url_for('login'))
-        return f(*args, **kwargs)
-    return decorated_function
-
-def check_login_attempts(username, ip_address):
-    cutoff_time = datetime.utcnow() - timedelta(minutes=15)
-    attempts = LoginAttempt.query.filter(
-        LoginAttempt.username == username,
-        LoginAttempt.ip_address == ip_address,
-        LoginAttempt.attempt_time > cutoff_time,
-        LoginAttempt.successful == False
-    ).count()
-    return attempts < 5 
-
 @app.route('/login', methods = ['GET', 'POST'])
 def login():
     if 'user_id' in session:
@@ -208,29 +103,13 @@ def login():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
-        ip_address = request.remote_addr
-
-        if not check_login_attempts(username, ip_address):
-            flash('Too many login attempts. Please try again later.', 'danger')
-            return render_template('login.html')
-        
         user = User.query.filter_by(username = username).first()
 
-        attempt = LoginAttempt(
-            username=username,
-            ip_address=ip_address,
-            successful=False
-        )
-
-        db.session.add(attempt)
-
         if user and AuthController.check_password(user.password, password):
-            attempt.successful = True
             session['user_id'] = user.id
             flash('Login successful!', 'success')
             return redirect(url_for('home'))
         else:
-            db.session.commit()
             flash('Invalid username or password', 'danger')
 
     return render_template('login.html')
@@ -274,37 +153,14 @@ def profile():
 @app.route('/')
 def home():
     return render_template('index.html')
+    
+@app.route('/progress')
+def progress():
+    if 'user_id' not in session:
+        flash('Please login to view your progress', 'danger')
+        return redirect(url_for('login'))  
 
-def update_user_progress(user_id, challenge_type, challenge_id, succeeded):
-    progress = UserProgress.query.filter_by(
-        user_id=user_id,
-        challenge_type=challenge_type,
-        challenge_id=challenge_id
-    ).first()
-
-    if not progress:
-        progress = UserProgress(
-            user_id=user_id,
-            challenge_type=challenge_type,
-            challenge_id=challenge_id
-        )
-        db.session.add(progress)
-
-    progress.attempts += 1
-    if succeeded and not progress.completed:
-        progress.completed = True
-        progress.completed_at = datetime.utcnow()
-
-    attempt = UserAttempt(
-        user_id=user_id,
-        challenge_type=challenge_type,
-        challenge_id=challenge_id,
-        code_submitted=request.form['code'],
-        succeeded=succeeded
-    )
-
-    db.session.add(attempt)
-    db.session.commit()
+    return render_template('progress.html')
 
 @app.route('/choose_challenge', methods=['GET'])
 def choose_challenge():
@@ -434,10 +290,6 @@ class PythonChallenges:
 
 @app.route('/python', methods=['GET', 'POST'])
 def python_practice():
-    if 'user_id' not in session:
-        flash('Please login to track your progress', 'warning')
-        return redirect(url_for('login'))
-    
     challenges = PythonChallenges.get_challenges()
     challenge_id = int(request.args.get('id', 1))
     challenge = next((c for c in challenges if c['id'] == challenge_id), None)
@@ -450,36 +302,18 @@ def python_practice():
 
     if request.method == 'POST':
         user_code = request.form['code']
+
         action = request.form.get('action')
 
         if action == "show_solution":
-            solution = challenge['valid_solutions'][0]  # Choose which solution to show
+            solution = challenge['valid_solutions'][1]  # Choose which solution to show
         else:
             feedback = PythonChallenges.validate_solution(user_code, challenge)
-            succeeded = "Correct!" in feedback
-            update_user_progress(session['user_id'], 'python', challenge_id, succeeded)
 
-            if succeeded:
-                next_challenge = challenge_id + 1 if challenge_id < len(challenges) else None
+        if "Correct!" in feedback:
+            next_challenge = challenge_id + 1 if challenge_id < len(challenges) else None
 
-    user_progress = None
-    if 'user_id' in session:
-        user_progress = UserProgress.query.filter_by(
-            user_id=session['user_id'],
-            challenge_type='python',
-            challenge_id=challenge_id
-        ).first()
-
-    return render_template('python.html', 
-                           challenge=challenge, 
-                           result=result, 
-                           feedback=feedback, 
-                           next_challenge=next_challenge, 
-                           test_status=test_status, 
-                           total_challenges=len(challenges),  
-                           solution=solution, 
-                           current_hint_index=request.form.get('current_hint_index', 0) if request.method == 'POST' else 0,
-                           user_progress=user_progress)
+    return render_template('python.html', challenge=challenge, result=result, feedback=feedback, next_challenge=next_challenge, test_status=test_status, total_challenges=len(challenges),  solution=solution, current_hint_index=request.form.get('current_hint_index', 0) if request.method == 'POST' else 0)
 
 class MatlabChallenges:
     @staticmethod
@@ -1025,38 +859,6 @@ def c_practice():
             test_status = 'Failed'
 
     return render_template('c.html', challenge=challenge, result=result, feedback=feedback, next_challenge=next_challenge, test_status=test_status, total_challenges=len(challenges), solution=solution, current_hint_index=request.form.get('current_hint_index', 0) if request.method == 'POST' else 0)
-
-@app.route('/progress')
-def progress():
-    if 'user_id' not in session:
-        flash('Please login to view your progress', 'danger')
-        return redirect(url_for('login'))
-    
-    user = User.query.get(session['user_id'])
-    progress_data = {
-        'python': UserProgress.query.filter_by(user_id=user.id, challenge_type='python').all(),
-        'matlab': UserProgress.query.filter_by(user_id=user.id, challenge_type='matlab').all(),
-        'sql': UserProgress.query.filter_by(user_id=user.id, challenge_type='sql').all(),
-        'c': UserProgress.query.filter_by(user_id=user.id, challenge_type='c').all()
-    }
-
-    recent_attempts = UserAttempt.query.filter_by(user_id=user.id)\
-        .order_by(UserAttempt.attempt_time.desc())\
-        .limit(10)\
-        .all()
-    
-    stats = {
-        'total_completed': UserProgress.query.filter_by(user_id=user.id, completed=True).count(),
-        'total_attempts': UserAttempt.query.filter_by(user_id=user.id).count(),
-        'success_rate': UserAttempt.query.filter_by(user_id=user.id, succeeded=True).count() / \
-            UserAttempt.query.filter_by(user_id=user.id).count() * 100 if UserAttempt.query.filter_by(user_id=user.id).count() > 0 else 0
-    }
-
-    return render_template('progress.html', 
-                         user=user, 
-                         progress_data=progress_data,
-                         recent_attempts=recent_attempts,
-                         stats=stats)
 
 def init_db():
     with app.app_context():

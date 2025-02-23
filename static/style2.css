@@ -1,0 +1,13 @@
+/* Style for Achievement Card Hover Effect */
+.progress-page .achievement-card {
+    transition: transform 0.2s;
+}
+.progress-page .achievement-card:hover {
+    transform: translateY(-5px);
+}
+
+/* Style for the Badge Icons */
+.progress-page .badge-icon {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
