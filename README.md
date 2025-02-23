@@ -141,8 +141,7 @@ def home():
 - Clone the repository
 
 ```sh
-git clone https://github.com/JULHMSPLOY/CodeTrek18.git
-cd CWS
+git clone https://github.com/JULHMSPLOY/CWS.git
 ```
 
 - Install dependencies
