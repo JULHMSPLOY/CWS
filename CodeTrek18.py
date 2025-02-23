@@ -149,6 +149,12 @@ def profile():
     else:
         flash('Please log in to view or update your profile.', 'danger')
         return redirect(url_for('login'))
+
+@app.route('/')
+def home():
+    return render_template('index.html')
+
+class UserProgress(db.Model):
     
 @app.route('/progress')
 def progress():
@@ -158,10 +164,6 @@ def progress():
     user = User.query.get(session['user_id'])
 
     return render_template('progress.html', user=user)
-
-@app.route('/')
-def home():
-    return render_template('index.html')
 
 @app.route('/choose_challenge', methods=['GET'])
 def choose_challenge():
