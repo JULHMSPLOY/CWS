@@ -207,7 +207,7 @@ def update_user_progress(user_id, challenge_type, challenge_id, succeeded):
         code_submitted=request.form['code'],
         succeeded=succeeded
     )
-    
+
     db.session.add(attempt)
     db.session.commit()
 
@@ -339,6 +339,10 @@ class PythonChallenges:
 
 @app.route('/python', methods=['GET', 'POST'])
 def python_practice():
+    if 'user_id' not in session:
+        flash('Please login to track your progress', 'warning')
+        return redirect(url_for('login'))
+    
     challenges = PythonChallenges.get_challenges()
     challenge_id = int(request.args.get('id', 1))
     challenge = next((c for c in challenges if c['id'] == challenge_id), None)
