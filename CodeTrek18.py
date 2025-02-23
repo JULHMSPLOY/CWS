@@ -157,7 +157,10 @@ def user_settings():
         user.settings.dark_mode = 'dark_mode' in request.form
         db.session.commit()
         flash('Settings updated successfully!', 'success')
+
         return redirect(url_for('user_settings'))
+    
+    return render_template('settings.html', user=user)
 
 def login_required(f):
     @wraps(f)
