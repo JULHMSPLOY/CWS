@@ -133,6 +133,8 @@ def login_required(f):
         return f(*args, **kwargs)
     return decorated_function
 
+class LoginAttempt(db.Model):
+
 @app.route('/login', methods = ['GET', 'POST'])
 def login():
     if 'user_id' in session:
