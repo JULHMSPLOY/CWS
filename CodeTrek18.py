@@ -162,6 +162,8 @@ def user_settings():
     
     return render_template('settings.html', user=user)
 
+@app.route('/reset_password', methods=['GET', 'POST'])
+
 def login_required(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
