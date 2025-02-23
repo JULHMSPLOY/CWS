@@ -163,6 +163,10 @@ def user_settings():
     return render_template('settings.html', user=user)
 
 @app.route('/reset_password', methods=['GET', 'POST'])
+def reset_password():
+    if request.method == 'POST':
+        email = request.form['email']
+        user = User.query.filter_by(email=email).first()
 
 def login_required(f):
     @wraps(f)
