@@ -945,6 +945,11 @@ def progress():
         'c': UserProgress.query.filter_by(user_id=user.id, challenge_type='c').all()
     }
 
+    recent_attempts = UserAttempt.query.filter_by(user_id=user.id)\
+        .order_by(UserAttempt.attempt_time.desc())\
+        .limit(10)\
+        .all()
+
 def init_db():
     with app.app_context():
         db.drop_all()
