@@ -50,7 +50,7 @@ CodeTrek18 เป็นเว็บแอปพลิเคชันสำหร
 
 - ติดตั้ง Libraries โดยใช้คำสั่งด้านล่างนี้ใน terminal หรือ command prompt
 ```sh 
-pip install flask flask_sqlalchemy flask_bootstrap werkzeug bcrypt
+pip install flask flask_sqlalchemy flask_bootstrap werkzeug
 ```
 
 # Usage 
