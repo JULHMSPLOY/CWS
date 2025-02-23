@@ -936,7 +936,14 @@ def progress():
     if 'user_id' not in session:
         flash('Please login to view your progress', 'danger')
         return redirect(url_for('login'))
-
+    
+    user = User.query.get(session['user_id'])
+    progress_data = {
+        'python': UserProgress.query.filter_by(user_id=user.id, challenge_type='python').all(),
+        'matlab': UserProgress.query.filter_by(user_id=user.id, challenge_type='matlab').all(),
+        'sql': UserProgress.query.filter_by(user_id=user.id, challenge_type='sql').all(),
+        'c': UserProgress.query.filter_by(user_id=user.id, challenge_type='c').all()
+    }
 
 def init_db():
     with app.app_context():
