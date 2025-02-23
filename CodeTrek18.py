@@ -140,6 +140,8 @@ class LoginAttempt(db.Model):
     attempt_time = db.Column(db.DateTime, default=datetime.utcnow)
     successful = db.Column(db.Boolean, default=False)
 
+def check_login_attempts(username, ip_address):
+
 @app.route('/login', methods = ['GET', 'POST'])
 def login():
     if 'user_id' in session:
