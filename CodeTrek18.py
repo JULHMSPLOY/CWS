@@ -47,6 +47,9 @@ class UserProgress(db.Model):
     attempts = db.Column(db.Integer, default=0)
     completed_at = db.Column(db.DateTime, nullable=True)
 
+    def __repr__(self):
+        return f'<Progress {self.user_id}-{self.challenge_type}-{self.challenge_id}>'
+
 class UserAttempt(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
@@ -55,6 +58,9 @@ class UserAttempt(db.Model):
     code_submitted = db.Column(db.Text, nullable=False)
     succeeded = db.Column(db.Boolean, default=False)
     attempt_time = db.Column(db.DateTime, default=datetime.utcnow)
+
+    def __repr__(self):
+        return f'<Attempt {self.user_id}-{self.challenge_type}-{self.challenge_id}>'
     
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in app.config['ALLOWED_EXTENSIONS']
