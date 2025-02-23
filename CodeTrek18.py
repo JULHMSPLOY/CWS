@@ -141,6 +141,8 @@ def signup():
 
     return render_template('signup.html')
 
+@app.route('/settings', methods=['GET', 'POST'])
+
 def login_required(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
