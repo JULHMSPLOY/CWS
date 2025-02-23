@@ -957,6 +957,12 @@ def progress():
             UserAttempt.query.filter_by(user_id=user.id).count() * 100 if UserAttempt.query.filter_by(user_id=user.id).count() > 0 else 0
     }
 
+    return render_template('progress.html', 
+                         user=user, 
+                         progress_data=progress_data,
+                         recent_attempts=recent_attempts,
+                         stats=stats)
+
 def init_db():
     with app.app_context():
         db.drop_all()
