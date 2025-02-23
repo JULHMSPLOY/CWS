@@ -367,7 +367,24 @@ def python_practice():
             if succeeded:
                 next_challenge = challenge_id + 1 if challenge_id < len(challenges) else None
 
-    return render_template('python.html', challenge=challenge, result=result, feedback=feedback, next_challenge=next_challenge, test_status=test_status, total_challenges=len(challenges),  solution=solution, current_hint_index=request.form.get('current_hint_index', 0) if request.method == 'POST' else 0)
+    user_progress = None
+    if 'user_id' in session:
+        user_progress = UserProgress.query.filter_by(
+            user_id=session['user_id'],
+            challenge_type='python',
+            challenge_id=challenge_id
+        ).first()
+
+    return render_template('python.html', 
+                           challenge=challenge, 
+                           result=result, 
+                           feedback=feedback, 
+                           next_challenge=next_challenge, 
+                           test_status=test_status, 
+                           total_challenges=len(challenges),  
+                           solution=solution, 
+                           current_hint_index=request.form.get('current_hint_index', 0) if request.method == 'POST' else 0,
+                           user_progress=user_progress)
 
 class MatlabChallenges:
     @staticmethod
