@@ -200,6 +200,17 @@ def update_user_progress(user_id, challenge_type, challenge_id, succeeded):
         progress.completed = True
         progress.completed_at = datetime.utcnow()
 
+    attempt = UserAttempt(
+        user_id=user_id,
+        challenge_type=challenge_type,
+        challenge_id=challenge_id,
+        code_submitted=request.form['code'],
+        succeeded=succeeded
+    )
+    
+    db.session.add(attempt)
+    db.session.commit()
+
 @app.route('/choose_challenge', methods=['GET'])
 def choose_challenge():
     challenges = {
