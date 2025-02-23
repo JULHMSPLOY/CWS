@@ -195,6 +195,11 @@ def update_user_progress(user_id, challenge_type, challenge_id, succeeded):
         )
         db.session.add(progress)
 
+    progress.attempts += 1
+    if succeeded and not progress.completed:
+        progress.completed = True
+        progress.completed_at = datetime.utcnow()
+
 @app.route('/choose_challenge', methods=['GET'])
 def choose_challenge():
     challenges = {
