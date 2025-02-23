@@ -181,6 +181,11 @@ def home():
     return render_template('index.html')
 
 def update_user_progress(user_id, challenge_type, challenge_id, succeeded):
+    progress = UserProgress.query.filter_by(
+        user_id=user_id,
+        challenge_type=challenge_type,
+        challenge_id=challenge_id
+    ).first()
 
 @app.route('/choose_challenge', methods=['GET'])
 def choose_challenge():
