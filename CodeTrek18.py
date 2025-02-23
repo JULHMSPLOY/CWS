@@ -123,6 +123,15 @@ def signup():
 
     return render_template('signup.html')
 
+def login_required(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        if 'user_id' not in session:
+            flash('Please login to access this page', 'danger')
+            return redirect(url_for('login'))
+        return f(*args, **kwargs)
+    return decorated_function
+
 @app.route('/login', methods = ['GET', 'POST'])
 def login():
     if 'user_id' in session:
