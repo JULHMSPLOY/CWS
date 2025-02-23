@@ -355,14 +355,15 @@ def python_practice():
 
     if request.method == 'POST':
         user_code = request.form['code']
-
         action = request.form.get('action')
 
         if action == "show_solution":
             solution = challenge['valid_solutions'][0]  # Choose which solution to show
         else:
             feedback = PythonChallenges.validate_solution(user_code, challenge)
-
+            succeeded = "Correct!" in feedback
+            update_user_progress(session['user_id'], 'python', challenge_id, succeeded)
+            
         if "Correct!" in feedback:
             next_challenge = challenge_id + 1 if challenge_id < len(challenges) else None
 
