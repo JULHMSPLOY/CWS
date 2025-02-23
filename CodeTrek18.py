@@ -168,6 +168,13 @@ def reset_password():
         email = request.form['email']
         user = User.query.filter_by(email=email).first()
 
+        if user:
+            reset_token = generate_password_hash(str(datetime.utcnow()))
+            user.reset_token = reset_token
+            user.reset_token_expiry = datetime.utcnow() + timedelta(hours=24)
+
+            db.session.commit()
+
 def login_required(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
