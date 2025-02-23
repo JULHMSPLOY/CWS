@@ -148,6 +148,9 @@ def user_settings():
     if not user.settings:
         settings = UserSettings(user_id=user.id)
 
+        db.session.add(settings)
+        db.session.commit()
+
 def login_required(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
