@@ -932,6 +932,10 @@ def c_practice():
     return render_template('c.html', challenge=challenge, result=result, feedback=feedback, next_challenge=next_challenge, test_status=test_status, total_challenges=len(challenges), solution=solution, current_hint_index=request.form.get('current_hint_index', 0) if request.method == 'POST' else 0)
 
 @app.route('/progress')
+def progress():
+    if 'user_id' not in session:
+        flash('Please login to view your progress', 'danger')
+        return redirect(url_for('login'))
 
 
 def init_db():
