@@ -151,6 +151,14 @@ def user_settings():
         db.session.add(settings)
         db.session.commit()
 
+    if request.method == 'POST':
+        user.settings.preferred_language = request.form.get('preferred_language', 'python')
+        user.settings.email_notifications = 'email_notifications' in request.form
+        user.settings.dark_mode = 'dark_mode' in request.form
+        db.session.commit()
+        flash('Settings updated successfully!', 'success')
+        return redirect(url_for('user_settings'))
+
 def login_required(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
