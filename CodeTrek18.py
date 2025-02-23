@@ -363,9 +363,9 @@ def python_practice():
             feedback = PythonChallenges.validate_solution(user_code, challenge)
             succeeded = "Correct!" in feedback
             update_user_progress(session['user_id'], 'python', challenge_id, succeeded)
-            
-        if "Correct!" in feedback:
-            next_challenge = challenge_id + 1 if challenge_id < len(challenges) else None
+
+            if succeeded:
+                next_challenge = challenge_id + 1 if challenge_id < len(challenges) else None
 
     return render_template('python.html', challenge=challenge, result=result, feedback=feedback, next_challenge=next_challenge, test_status=test_status, total_challenges=len(challenges),  solution=solution, current_hint_index=request.form.get('current_hint_index', 0) if request.method == 'POST' else 0)
 
