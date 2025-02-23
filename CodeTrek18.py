@@ -171,14 +171,16 @@ def login():
             ip_address=ip_address,
             successful=False
         )
-        
+
         db.session.add(attempt)
 
         if user and AuthController.check_password(user.password, password):
+            attempt.successful = True
             session['user_id'] = user.id
             flash('Login successful!', 'success')
             return redirect(url_for('home'))
         else:
+            db.session.commit()
             flash('Invalid username or password', 'danger')
 
     return render_template('login.html')
