@@ -155,15 +155,13 @@ def home():
     return render_template('index.html')
 
 class UserProgress(db.Model):
-    
-@app.route('/progress')
-def progress():
-    if 'user_id' not in session:
-        flash('Please log in to view your progress.', 'danger')
-        return redirect(url_for('login'))
-    user = User.query.get(session['user_id'])
-
-    return render_template('progress.html', user=user)
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    challenge_type = db.Column(db.String(20), nullable=False)  
+    challenge_id = db.Column(db.Integer, nullable=False)
+    completed = db.Column(db.Boolean, default=False)
+    attempts = db.Column(db.Integer, default=0)
+    completed_at = db.Column(db.DateTime, nullable=True)
 
 @app.route('/choose_challenge', methods=['GET'])
 def choose_challenge():
