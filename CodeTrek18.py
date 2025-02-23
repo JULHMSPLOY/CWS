@@ -38,6 +38,24 @@ class User(db.Model):
     def __repr__(self):
         return f'<User {self.username}>'
     
+class UserProgress(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    challenge_type = db.Column(db.String(20), nullable=False)  
+    challenge_id = db.Column(db.Integer, nullable=False)
+    completed = db.Column(db.Boolean, default=False)
+    attempts = db.Column(db.Integer, default=0)
+    completed_at = db.Column(db.DateTime, nullable=True)
+
+class UserAttempt(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    challenge_type = db.Column(db.String(20), nullable=False)
+    challenge_id = db.Column(db.Integer, nullable=False)
+    code_submitted = db.Column(db.Text, nullable=False)
+    succeeded = db.Column(db.Boolean, default=False)
+    attempt_time = db.Column(db.DateTime, default=datetime.utcnow)
+    
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in app.config['ALLOWED_EXTENSIONS']
 
@@ -153,17 +171,6 @@ def profile():
 @app.route('/')
 def home():
     return render_template('index.html')
-
-class UserProgress(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
-    challenge_type = db.Column(db.String(20), nullable=False)  
-    challenge_id = db.Column(db.Integer, nullable=False)
-    completed = db.Column(db.Boolean, default=False)
-    attempts = db.Column(db.Integer, default=0)
-    completed_at = db.Column(db.DateTime, nullable=True)
-
-class UserAttempt(db.Model):
 
 @app.route('/choose_challenge', methods=['GET'])
 def choose_challenge():
