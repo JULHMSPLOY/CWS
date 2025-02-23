@@ -163,6 +163,8 @@ class UserProgress(db.Model):
     attempts = db.Column(db.Integer, default=0)
     completed_at = db.Column(db.DateTime, nullable=True)
 
+class UserAttempt(db.Model):
+
 @app.route('/choose_challenge', methods=['GET'])
 def choose_challenge():
     challenges = {
