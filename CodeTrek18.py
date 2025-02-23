@@ -158,6 +158,7 @@ def login():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
+        ip_address = request.remote_addr
         user = User.query.filter_by(username = username).first()
 
         if user and AuthController.check_password(user.password, password):
