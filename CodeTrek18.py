@@ -177,6 +177,9 @@ def reset_password():
 
             flash('Password reset instructions have been sent to your email.', 'success')
             return redirect(url_for('login'))
+        
+        flash('Email address not found.', 'danger')
+    return render_template('reset_password.html')
 
 def login_required(f):
     @wraps(f)
