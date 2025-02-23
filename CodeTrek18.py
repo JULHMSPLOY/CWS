@@ -59,7 +59,14 @@ class LoginAttempt(db.Model):
     successful = db.Column(db.Boolean, default=False)
 
 class UserSettings(db.Model):
-    
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    preferred_language = db.Column(db.String(20), default='python')
+    email_notifications = db.Column(db.Boolean, default=True)
+    dark_mode = db.Column(db.Boolean, default=False)
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(120), unique=True, nullable=False)
