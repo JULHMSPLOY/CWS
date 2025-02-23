@@ -166,6 +166,14 @@ def login():
         
         user = User.query.filter_by(username = username).first()
 
+        attempt = LoginAttempt(
+            username=username,
+            ip_address=ip_address,
+            successful=False
+        )
+        
+        db.session.add(attempt)
+
         if user and AuthController.check_password(user.password, password):
             session['user_id'] = user.id
             flash('Login successful!', 'success')
