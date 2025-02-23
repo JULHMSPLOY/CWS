@@ -159,6 +159,11 @@ def login():
         username = request.form['username']
         password = request.form['password']
         ip_address = request.remote_addr
+
+        if not check_login_attempts(username, ip_address):
+            flash('Too many login attempts. Please try again later.', 'danger')
+            return render_template('login.html')
+        
         user = User.query.filter_by(username = username).first()
 
         if user and AuthController.check_password(user.password, password):
