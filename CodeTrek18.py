@@ -141,6 +141,14 @@ class LoginAttempt(db.Model):
     successful = db.Column(db.Boolean, default=False)
 
 def check_login_attempts(username, ip_address):
+    cutoff_time = datetime.utcnow() - timedelta(minutes=15)
+    attempts = LoginAttempt.query.filter(
+        LoginAttempt.username == username,
+        LoginAttempt.ip_address == ip_address,
+        LoginAttempt.attempt_time > cutoff_time,
+        LoginAttempt.successful == False
+    ).count()
+    return attempts < 5 
 
 @app.route('/login', methods = ['GET', 'POST'])
 def login():
