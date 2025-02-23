@@ -175,6 +175,9 @@ def reset_password():
 
             db.session.commit()
 
+            flash('Password reset instructions have been sent to your email.', 'success')
+            return redirect(url_for('login'))
+
 def login_required(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
